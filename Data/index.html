@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UFRN - Monitoramento de Sinal de Controle</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-moment@1.0.0"></script>
+</head>
+<body>
+    <header>
+        <div class="header-left">
+            <img src="img\ufrn_logo.png" alt="Logo UFRN" class="logo">
+            <h1>UFRN</h1>
+        </div>
+        <nav class="header-right">
+            <div class="dropdown">
+                <button class="dropbtn">Ordem <span class="arrow"></span></button>
+                <div class="dropdown-content">
+                    <a href="#">Planta 1</a>
+                    <a href="#">Planta 2</a>
+                    <a href="#">Planta 3</a>
+                    <a href="#">Planta 4</a>
+                </div>
+            </div>
+            <div class="dropdown">
+                <button class="dropbtn">Experimento <span class="arrow"></span></button>
+                <div class="dropdown-content">
+                    <a href="#">Experimento 1</a>
+                    <a href="#">Experimento 2</a>
+                    <a href="#">Experimento 3</a>
+                    <a href="#">Experimento 4</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="main-content">
+            <div class="chart-container">
+                <h2>Sinal de Controle MV e Saída</h2>
+                <canvas id="controlSignalChart"></canvas>
+            </div>
+            <aside class="sidebar">
+                <h3>Configurações do Gráfico</h3>
+                <div class="setting-group">
+                    <label for="scale-adjustment">Ajustar Escala:</label>
+                    <input type="range" id="scale-adjustment" min="0.5" max="2" step="0.1" value="1">
+                    <span id="scale-value">1x</span>
+                </div>
+                <div class="setting-group">
+                    <label for="mv-color">Cor MV:</label>
+                    <input type="color" id="mv-color" value="#00FFC0">
+                </div>
+                <div class="setting-group">
+                    <label for="output-color">Cor Saída:</label>
+                    <input type="color" id="output-color" value="#DF7F26">
+                </div>
+                <button class="btn-reset">Redefinir Cores</button>
+                </aside>
+        </section>
+
+        <section class="values-display">
+            <div class="value-card setpoint-card">
+                <span>Set Point</span>
+                <span class="value" id="setPointValue">25.0</span>
+            </div>
+            <div class="value-card mv-card">
+                <span>MV</span>
+                <span class="value" id="mvValue">24.5</span>
+            </div>
+            <div class="value-card output-card">
+                <span>Saída</span>
+                <span class="value" id="outputValue">24.8</span>
+            </div>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>

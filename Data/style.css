@@ -1,0 +1,381 @@
+:root {
+    --dark-blue: #0A192F; /* Fundo azul escuro */
+    --light-blue-green: #00CC99; /* Verde próximo do azul / Aqua */
+    --white: #F0EDE5;
+    --text-color: #E6F1FF; /* Azul claro para o texto principal */
+    --border-color: #2D3A5D; /* Azul um pouco mais claro para bordas/divisores */
+    --card-background: #1C2B47; /* Fundo para os cards de valor */
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: var(--dark-blue);
+    color: var(--text-color);
+    line-height: 1.6;
+    overflow-x: hidden; /* Evita scroll horizontal indesejado */
+}
+
+/* Header */
+header {
+    background-color: var(--dark-blue);
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    z-index: 1000;
+    position: relative;
+}
+
+.header-left {
+    display: flex;
+    align-items: center;
+}
+
+.header-left .logo {
+    height: 40px;
+    width: 40px;
+    margin-right: 10px;
+    border-radius: 10%; /* Se o logo for circular */
+}
+
+.header-left h1 {
+    margin: 0;
+    font-size: 1.8rem;
+    color: var(--white);
+}
+
+.header-right {
+    display: flex;
+    gap: 25px;
+}
+
+/* Dropdown Menus */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropbtn {
+    background-color: transparent;
+    color: var(--white);
+    padding: 10px 15px;
+    font-size: 1rem;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+}
+
+.dropbtn:hover {
+    background-color: rgba(0, 204, 153, 0.1);
+    color: var(--light-blue-green);
+}
+
+.dropbtn .arrow {
+    border: solid var(--white);
+    border-width: 0 2px 2px 0;
+    display: inline-block;
+    padding: 3px;
+    margin-left: 8px;
+    transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
+    transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: var(--card-background);
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.4);
+    z-index: 1;
+    border-radius: 5px;
+    overflow: hidden;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    border: 1px solid var(--border-color);
+}
+
+.dropdown-content a {
+    color: var(--text-color);
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.dropdown-content a:hover {
+    background-color: var(--light-blue-green);
+    color: var(--dark-blue);
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.dropdown:hover .dropbtn .arrow {
+    transform: rotate(-135deg); /* Seta para cima quando o menu está aberto */
+    border-color: var(--light-blue-green);
+}
+
+/* Main Content */
+main {
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.main-content {
+    display: flex;
+    gap: 2rem;
+    flex-wrap: wrap; /* Para responsividade */
+}
+
+.chart-container {
+    flex: 3; /* Ocupa mais espaço */
+    background-color: var(--card-background);
+    padding: 1.5rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    min-width: 300px; /* Garante que não fique muito pequeno */
+}
+
+.chart-container h2 {
+    color: var(--light-blue-green);
+    text-align: center;
+    margin-top: 0;
+    margin-bottom: 1.5rem;
+    font-size: 1.5rem;
+}
+
+#controlSignalChart {
+    max-height: 500px; /* Limita a altura do gráfico */
+    width: 100% !important; /* Garante que o Chart.js se ajuste */
+    height: auto !important; /* Garante que o Chart.js se ajuste */
+}
+
+/* Sidebar */
+.sidebar {
+    flex: 1; /* Ocupa menos espaço */
+    background-color: var(--card-background);
+    padding: 1.5rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    min-width: 250px;
+}
+
+.sidebar h3 {
+    color: var(--light-blue-green);
+    margin-top: 0;
+    margin-bottom: 1.5rem;
+    font-size: 1.3rem;
+    text-align: center;
+}
+
+.setting-group {
+    margin-bottom: 1.2rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.setting-group label {
+    margin-bottom: 0.5rem;
+    color: var(--text-color);
+    font-size: 0.95rem;
+}
+
+.setting-group input[type="range"] {
+    width: 100%;
+    -webkit-appearance: none; /* Remove padrão do navegador */
+    height: 8px;
+    background: var(--border-color);
+    border-radius: 5px;
+    outline: none;
+    opacity: 0.8;
+    transition: opacity .2s;
+    margin-top: 5px;
+}
+
+.setting-group input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: var(--light-blue-green);
+    cursor: grab;
+    box-shadow: 0 0 5px rgba(0, 204, 153, 0.7);
+    transition: background-color 0.2s;
+}
+
+.setting-group input[type="range"]::-webkit-slider-thumb:active {
+    cursor: grabbing;
+}
+
+.setting-group input[type="range"]::-moz-range-thumb {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: var(--light-blue-green);
+    cursor: grab;
+    box-shadow: 0 0 5px rgba(0, 204, 153, 0.7);
+    transition: background-color 0.2s;
+}
+
+.setting-group input[type="color"] {
+    -webkit-appearance: none;
+    border: none;
+    width: 60px;
+    height: 30px;
+    background: none;
+    cursor: pointer;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.setting-group input[type="color"]::-webkit-color-swatch-wrapper {
+    padding: 0;
+}
+
+.setting-group input[type="color"]::-webkit-color-swatch {
+    border: 2px solid var(--border-color);
+    border-radius: 5px;
+}
+
+.btn-reset {
+    background-color: var(--light-blue-green);
+    color: var(--dark-blue);
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    margin-top: 1rem;
+    width: 100%;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.btn-reset:hover {
+    background-color: #008060; /* Um tom ligeiramente mais escuro */
+    transform: translateY(-2px);
+}
+
+/* Values Display */
+.values-display {
+    display: flex;
+    justify-content: space-around;
+    gap: 1.5rem;
+    flex-wrap: wrap; /* Para responsividade */
+}
+
+.value-card {
+    background-color: var(--card-background);
+    padding: 1.5rem 2rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    min-width: 180px;
+    flex: 1; /* Para distribuir o espaço */
+    transition: transform 0.3s ease, border 0.3s ease;
+    border: 2px solid transparent;
+}
+
+.value-card:hover {
+    transform: translateY(-5px);
+    border: 2px solid var(--light-blue-green);
+}
+
+.value-card span:first-child {
+    display: block;
+    font-size: 1.1rem;
+    color: var(--text-color);
+    margin-bottom: 0.5rem;
+}
+
+.value-card .value {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: var(--light-blue-green);
+    text-shadow: 0 0 8px rgba(0, 204, 153, 0.7);
+}
+
+/* Specific card colors (optional, for visual distinction) */
+.setpoint-card .value { color: #00cc99;}
+.mv-card .value { color: #00cc99;}
+.output-card .value { color: #00cc99;}
+
+/* Responsividade */
+@media (max-width: 1024px) {
+    .main-content {
+        flex-direction: column;
+        align-items: center;
+    }
+    .chart-container, .sidebar {
+        width: 95%; /* Quase largura total */
+        max-width: 800px; /* Limite para telas grandes */
+    }
+    .values-display {
+        flex-direction: column;
+        align-items: center;
+    }
+    .value-card {
+        width: 95%;
+        max-width: 400px; /* Limite para telas grandes */
+    }
+}
+
+@media (max-width: 768px) {
+    header {
+        flex-direction: column;
+        gap: 1rem;
+        padding: 1rem;
+    }
+    .header-right {
+        flex-direction: column;
+        gap: 10px;
+        width: 100%;
+        align-items: center;
+    }
+    .dropbtn {
+        width: 80%;
+        text-align: center;
+        justify-content: center;
+    }
+    .dropdown-content {
+        width: 100%;
+        left: 0;
+        right: 0;
+    }
+    main {
+        padding: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .header-left h1 {
+        font-size: 1.5rem;
+    }
+    .value-card .value {
+        font-size: 2rem;
+    }
+    .chart-container h2 {
+        font-size: 1.3rem;
+    }
+    .sidebar h3 {
+        font-size: 1.1rem;
+    }
+}
+
+
+canvas {
+    background-color: var(--card-background); /* Garante que o fundo do canvas combine */
+}
