@@ -1,81 +1,189 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
+    <!-- Define a codificação de caracteres para o documento -->
     <meta charset="UTF-8">
+    <!-- Configura a viewport para garantir que a página seja responsiva em diferentes dispositivos -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Título que aparece na aba do navegador -->
     <title>UFRN - Monitoramento de Sinal de Controle</title>
+
+    <!-- Link para o arquivo de estilos CSS personalizado (style.css) -->
+    <!-- Todas as estilizações, incluindo responsividade, serão definidas neste arquivo -->
     <link rel="stylesheet" href="style.css">
+
+    <!-- Inclui a biblioteca Chart.js para a criação de gráficos interativos -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Inclui o adaptador Chart.js para Moment.js, útil para escalas de tempo no gráfico (se aplicável) -->
     <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-moment@1.0.0"></script>
 </head>
-<body>
-    
-    <header>
-        <div class="header-left">
-            <img src="img\ufrn_logo.png" alt="Logo UFRN" class="logo">
-            <h1>Monitoramento de Sinal de Controle</h1>
+<!-- O corpo da página. Classes de estilização agora são personalizadas no CSS -->
+<body class="body-base">
+
+    <!-- Seção do Cabeçalho: Contém o logo, título da aplicação e botão de login -->
+    <header class="main-header">
+        <!-- Contêiner para o logo e o título, alinhados à esquerda -->
+        <div class="header-left-content">
+            <!-- Imagem do logo da UFRN. Um placeholder é usado para garantir a exibição sem o arquivo de imagem real. -->
+            <img src="img/ufrn_logo.png" alt="Logo UFRN" class="logo-ufrn">
+            <!-- Título principal da aplicação -->
+            <h1 class="main-title">Monitoramento de Sinal de Controle</h1>
         </div>
-        <nav class="header-right">
-            <div class="dropdown">
-                <button class="dropbtn">Ordem <span class="arrow"></span></button>
-                <div class="dropdown-content">
-                    <a href="#">Ordem 1</a>
-                    <a href="#">Ordem 2</a>
-                </div>
-            </div>
-            <div class="dropdown">
-                <button class="dropbtn">Experimento <span class="arrow"></span></button>
-                <div class="dropdown-content">
-                    <a href="#">Experimento 1</a>
-                    <a href="#">Experimento 2</a>
-                    <a href="#">Experimento 3</a>
-                    <a href="#">Experimento 4</a>
-                </div>
-            </div>
-        </nav>
+        <!-- Botão de Login com estilo do Tailwind CSS -->
+        <button class="btn-login">Login com SIGAA</button>
     </header>
 
-    <main>
-        <section class="main-content">
+    <!-- Área Principal do Conteúdo: Contém o gráfico e a barra lateral de controles -->
+    <main class="main-layout">
+        <!-- Seção Principal de Conteúdo: Organiza o gráfico e a barra lateral lado a lado em telas maiores -->
+        <section class="content-section">
+            <!-- Contêiner do Gráfico: Abriga o canvas do gráfico e os cards de valores -->
             <div class="chart-container">
-                <h2>Sinal de Controle MV e Saída</h2>
-                <canvas id="controlSignalChart"></canvas>
-            </div>
-            <aside class="sidebar">
-                <h3>Configurações do Gráfico</h3>
-                <div class="setting-group">
-                    <label for="scale-adjustment">Ajustar Escala:</label>
-                    <input type="range" id="scale-adjustment" min="0.5" max="2" step="0.1" value="1">
-                    <span id="scale-value">1x</span>
-                </div>
-                <div class="setting-group">
-                    <label for="mv-color">Cor MV:</label>
-                    <input type="color" id="mv-color" value="#00FFC0">
-                </div>
-                <div class="setting-group">
-                    <label for="output-color">Cor Saída:</label>
-                    <input type="color" id="output-color" value="#DF7F26">
-                </div>
-                <button class="btn-reset">Redefinir Cores</button>
-                </aside>
-        </section>
+                <!-- Título do Gráfico -->
+                <h2 class="chart-title">Sinal de Controle MV e Saída</h2>
+                <!-- Elemento Canvas onde o Chart.js renderizará o gráfico -->
+                <canvas id="controlSignalChart" class="chart-canvas"></canvas>
 
-        <section class="values-display">
-            <div class="value-card setpoint-card">
-                <span>Set Point</span>
-                <span class="value" id="setPointValue">25.0</span>
+                <!-- Seção de Exibição de Valores Chave (Set Point, MV, Saída) -->
+                <section class="values-display-section">
+                    <!-- Card para o valor do Set Point -->
+                    <div class="value-card setpoint-card">
+                        <span class="value-label">Set Point</span>
+                        <span class="display-value" id="setPointValue">25.0</span>
+                    </div>
+                    <!-- Card para o valor de MV (Variável Manipulada) -->
+                    <div class="value-card mv-card">
+                        <span class="value-label">MV</span>
+                        <span class="display-value" id="mvValue">24.5</span>
+                    </div>
+                    <!-- Card para o valor de Saída -->
+                    <div class="value-card output-card">
+                        <span class="value-label">Saída</span>
+                        <span class="display-value" id="outputValue">24.8</span>
+                    </div>
+                </section>
             </div>
-            <div class="value-card mv-card">
-                <span>MV</span>
-                <span class="value" id="mvValue">24.5</span>
-            </div>
-            <div class="value-card output-card">
-                <span>Saída</span>
-                <span class="value" id="outputValue">24.8</span>
-            </div>
+
+            <!-- Barra Lateral para Controles e Configurações -->
+            <aside class="side-controls">
+                <!-- Contêiner para as Abas de Ordem (1ª e 2ª Ordem) -->
+                <div class="tabs-control-container">
+                    <!-- Cabeçalhos das Abas -->
+                    <div class="tabs-header">
+                        <button class="tab-button" data-tab="ordem1">1ª Ordem</button>
+                        <button class="tab-button" data-tab="ordem2">2ª Ordem</button>
+                    </div>
+
+                    <!-- Conteúdo da Aba "1ª Ordem" -->
+                    <div id="ordem1" class="tab-content">
+                        <!-- Grupo de Configuração: Modo de Operação (Malha Aberta/Fechada) -->
+                        <div class="setting-group-toggle">
+                            <label class="setting-label">Modo de Operação:</label>
+                            <div class="toggle-control-wrapper">
+                                <span class="toggle-mode-label" id="labelMalhaAberta1">Malha Aberta</span>
+                                <div class="toggle-switch">
+                                    <input type="checkbox" id="toggleOrdem1" class="toggle-input">
+                                    <div class="toggle-slider"></div>
+                                </div>
+                                <span class="toggle-mode-label" id="labelMalhaFechada1">Malha Fechada</span>
+                            </div>
+                        </div>
+
+                        <!-- Grupo de Configuração: Seleção da Planta (Radio Buttons) -->
+                        <div class="setting-group">
+                            <label class="setting-label-mb">Seleção da Planta:</label>
+                            <div class="radio-group">
+                                <label class="radio-label">
+                                    <input type="radio" name="plantaOrdem1" value="planta1" checked> Planta 1
+                                </label>
+                                <label class="radio-label">
+                                    <input type="radio" name="plantaOrdem1" value="planta2"> Planta 2
+                                </label>
+                                <label class="radio-label">
+                                    <input type="radio" name="plantaOrdem1" value="planta3"> Planta 3
+                                </label>
+                                <label class="radio-label">
+                                    <input type="radio" name="plantaOrdem1" value="planta4"> Planta 4
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Grupo de Configuração: Botão Descarregar Capacitor e Indicador de Status -->
+                        <div class="setting-group-inline">
+                            <button class="btn-capacitor">Descarregar Capacitor</button>
+                            <div id="statusIndicatorOrdem1" class="status-indicator status-green"></div>
+                        </div>
+                    </div>
+
+                    <!-- Conteúdo da Aba "2ª Ordem" -->
+                    <div id="ordem2" class="tab-content hidden-content">
+                        <!-- Grupo de Configuração: Modo de Operação (2ª Ordem) -->
+                        <div class="setting-group-toggle">
+                            <label class="setting-label">Modo de Operação:</label>
+                            <div class="toggle-control-wrapper">
+                                <span class="toggle-mode-label" id="labelMalhaAberta2">Malha Aberta</span>
+                                <div class="toggle-switch">
+                                    <input type="checkbox" id="toggleOrdem2" class="toggle-input">
+                                    <div class="toggle-slider"></div>
+                                </div>
+                                <span class="toggle-mode-label" id="labelMalhaFechada2">Malha Fechada</span>
+                            </div>
+                        </div>
+
+                        <!-- Grupo de Configuração: Seleção da Planta (2ª Ordem) -->
+                        <div class="setting-group">
+                            <label class="setting-label-mb">Seleção da Planta:</label>
+                            <div class="radio-group">
+                                <label class="radio-label">
+                                    <input type="radio" name="plantaOrdem2" value="planta1" checked> Planta 1
+                                </label>
+                                <label class="radio-label">
+                                    <input type="radio" name="plantaOrdem2" value="planta2"> Planta 2
+                                </label>
+                                <label class="radio-label">
+                                    <input type="radio" name="plantaOrdem2" value="planta3"> Planta 3
+                                </label>
+                                <label class="radio-label">
+                                    <input type="radio" name="plantaOrdem2" value="planta4"> Planta 4
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Grupo de Configuração: Botão Descarregar Capacitor e Indicador de Status (2ª Ordem) -->
+                        <div class="setting-group-inline">
+                            <button class="btn-capacitor">Descarregar Capacitor</button>
+                            <div id="statusIndicatorOrdem2" class="status-indicator status-green"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Contêiner para a Seção de Configurações do Gráfico -->
+                <div class="chart-settings-panel">
+                    <h3 class="panel-title">Configurações do Gráfico</h3>
+                    <!-- Grupo de Configuração: Ajuste de Escala -->
+                    <div class="setting-group">
+                        <label for="scale-adjustment" class="setting-label-mb">Ajustar Escala:</label>
+                        <input type="range" id="scale-adjustment" min="0.5" max="2" step="0.1" value="1" class="scale-range-input">
+                        <span id="scale-value" class="scale-value-display">1x</span>
+                    </div>
+                    <!-- Grupo de Configuração: Seletores de Cor e Botão Redefinir Cores -->
+                    <div class="setting-group-colors">
+                        <label for="mv-color" class="color-label">
+                            Cor MV:
+                            <input type="color" id="mv-color" value="#00FFC0" class="color-input">
+                        </label>
+                        <label for="output-color" class="color-label">
+                            Cor Saída:
+                            <input type="color" id="output-color" value="#DF7F26" class="color-input">
+                        </label>
+                    </div>
+                    <button class="btn-reset">Redefinir Cores</button>
+                </div>
+            </aside>
         </section>
     </main>
 
+    <!-- Link para o arquivo JavaScript personalizado (script.js) -->
     <script src="script.js"></script>
 </body>
 </html>

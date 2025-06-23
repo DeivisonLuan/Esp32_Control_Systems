@@ -1,381 +1,701 @@
+/*
+ * style.css
+ * Folha de Estilo CSS personalizada para a Aplicação de Monitoramento de Sinal de Controle da UFRN.
+ * Este arquivo define todos os estilos visuais da aplicação, sem o uso de frameworks CSS como Tailwind.
+ *
+ * Objetivo: Definir estilos para todos os elementos, incluindo layout, cores, tipografia e responsividade.
+ */
+
+/* ----------------------------------------------------------------------------- */
+/* Variáveis CSS: Definições de Cores para Consistência Visual */
+/* ----------------------------------------------------------------------------- */
 :root {
-    --dark-blue: #0A192F; /* Fundo azul escuro */
-    --light-blue-green: #00CC99; /* Verde próximo do azul / Aqua */
-    --white: #F0EDE5;
-    --text-color: #E6F1FF; /* Azul claro para o texto principal */
-    --border-color: #2D3A5D; /* Azul um pouco mais claro para bordas/divisores */
-    --card-background: #1C2B47; /* Fundo para os cards de valor */
+    --dark-blue: #0A192F;        /* Fundo principal e cabeçalho */
+    --light-blue-green: #00CC99; /* Cor de destaque para botões, estados ativos, valores importantes e linhas de gráfico */
+    --white: #F0EDE5;            /* Texto de alto contraste */
+    --text-color: #E6F1FF;       /* Texto geral (azul claro suave) */
+    --border-color: #2D3A5D;     /* Bordas, divisores e fundos de controles */
+    --card-background: #1C2B47;  /* Fundo de cards e painéis */
+    --green-status: #22c55e;     /* Cor para o indicador de status verde */
+    --red-status: #ef4444;       /* Cor para o indicador de status vermelho */
 }
 
-body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+/* ----------------------------------------------------------------------------- */
+/* Estilos Base e Reset */
+/* ----------------------------------------------------------------------------- */
+/* Reset básico para remover margens e preenchimentos padrão do navegador */
+html, body {
     margin: 0;
     padding: 0;
-    background-color: var(--dark-blue);
-    color: var(--text-color);
-    line-height: 1.6;
-    overflow-x: hidden; /* Evita scroll horizontal indesejado */
+    box-sizing: border-box; /* Garante que padding e border sejam incluídos na largura/altura total */
 }
 
-/* Header */
-header {
-    background-color: var(--dark-blue);
-    padding: 1rem 2rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-    z-index: 1000;
-    position: relative;
+/* Estilo base para o corpo da página */
+.body-base {
+    font-family: 'Inter', sans-serif; /* Define a família da fonte */
+    background-color: var(--dark-blue); /* Cor de fundo */
+    color: var(--text-color);      /* Cor de texto padrão */
+    line-height: 1.6;              /* Altura da linha para legibilidade */
+    min-height: 100vh;             /* Garante que o corpo ocupe toda a altura da viewport */
+    display: flex;                 /* Habilita o layout flexbox para organização vertical */
+    flex-direction: column;        /* Organiza os filhos em coluna */
+    overflow-x: hidden;            /* Previne rolagem horizontal */
 }
 
-.header-left {
-    display: flex;
-    align-items: center;
-}
-
-.header-left .logo {
-    height: 40px;
-    width: 40px;
-    margin-right: 10px;
-    border-radius: 10%; /* Se o logo for circular */
-}
-
-.header-left h1 {
-    margin: 0;
-    font-size: 1.8rem;
-    color: var(--white);
-}
-
-.header-right {
-    display: flex;
-    gap: 25px;
-}
-
-/* Dropdown Menus */
-.dropdown {
-    position: relative;
-    display: inline-block;
-}
-
-.dropbtn {
-    background-color: transparent;
-    color: var(--white);
-    padding: 10px 15px;
-    font-size: 1rem;
-    border: none;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    border-radius: 5px;
-    display: flex;
-    align-items: center;
-}
-
-.dropbtn:hover {
-    background-color: rgba(0, 204, 153, 0.1);
-    color: var(--light-blue-green);
-}
-
-.dropbtn .arrow {
-    border: solid var(--white);
-    border-width: 0 2px 2px 0;
-    display: inline-block;
-    padding: 3px;
-    margin-left: 8px;
-    transform: rotate(45deg);
-    -webkit-transform: rotate(45deg);
-    transition: transform 0.3s ease, border-color 0.3s ease;
-}
-
-.dropdown-content {
-    display: none;
-    position: absolute;
-    background-color: var(--card-background);
-    min-width: 160px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.4);
-    z-index: 1;
-    border-radius: 5px;
-    overflow: hidden;
-    opacity: 0;
-    transform: translateY(10px);
-    transition: opacity 0.3s ease, transform 0.3s ease;
-    border: 1px solid var(--border-color);
-}
-
-.dropdown-content a {
-    color: var(--text-color);
-    padding: 12px 16px;
-    text-decoration: none;
-    display: block;
-    transition: background-color 0.2s ease, color 0.2s ease;
-}
-
-.dropdown-content a:hover {
-    background-color: var(--light-blue-green);
-    color: var(--dark-blue);
-}
-
-.dropdown:hover .dropdown-content {
-    display: block;
-    opacity: 1;
-    transform: translateY(0);
-}
-
-.dropdown:hover .dropbtn .arrow {
-    transform: rotate(-135deg); /* Seta para cima quando o menu está aberto */
-    border-color: var(--light-blue-green);
-}
-
-/* Main Content */
-main {
-    padding: 2rem;
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
-}
-
-.main-content {
-    display: flex;
-    gap: 2rem;
-    flex-wrap: wrap; /* Para responsividade */
-}
-
-.chart-container {
-    flex: 3; /* Ocupa mais espaço */
-    background-color: var(--card-background);
-    padding: 1.5rem;
-    border-radius: 10px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-    min-width: 300px; /* Garante que não fique muito pequeno */
-}
-
-.chart-container h2 {
-    color: var(--light-blue-green);
-    text-align: center;
-    margin-top: 0;
-    margin-bottom: 1.5rem;
-    font-size: 1.5rem;
-}
-
-#controlSignalChart {
-    max-height: 500px; /* Limita a altura do gráfico */
-    width: 100% !important; /* Garante que o Chart.js se ajuste */
-    height: auto !important; /* Garante que o Chart.js se ajuste */
-}
-
-/* Sidebar */
-.sidebar {
-    flex: 1; /* Ocupa menos espaço */
-    background-color: var(--card-background);
-    padding: 1.5rem;
-    border-radius: 10px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-    min-width: 250px;
-}
-
-.sidebar h3 {
-    color: var(--light-blue-green);
-    margin-top: 0;
-    margin-bottom: 1.5rem;
-    font-size: 1.3rem;
-    text-align: center;
-}
-
-.setting-group {
-    margin-bottom: 1.2rem;
-    display: flex;
-    flex-direction: column;
-}
-
-.setting-group label {
-    margin-bottom: 0.5rem;
-    color: var(--text-color);
-    font-size: 0.95rem;
-}
-
-.setting-group input[type="range"] {
-    width: 100%;
-    -webkit-appearance: none; /* Remove padrão do navegador */
-    height: 8px;
-    background: var(--border-color);
-    border-radius: 5px;
+/* Remove o contorno de foco padrão do navegador para uma aparência mais limpa */
+*:focus {
     outline: none;
-    opacity: 0.8;
-    transition: opacity .2s;
-    margin-top: 5px;
+    box-shadow: none;
 }
 
-.setting-group input[type="range"]::-webkit-slider-thumb {
-    -webkit-appearance: none;
-    appearance: none;
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
-    background: var(--light-blue-green);
-    cursor: grab;
-    box-shadow: 0 0 5px rgba(0, 204, 153, 0.7);
-    transition: background-color 0.2s;
+/* ----------------------------------------------------------------------------- */
+/* Estilos do Cabeçalho (Header) */
+/* ----------------------------------------------------------------------------- */
+.main-header {
+    background-color: var(--dark-blue); /* Cor de fundo do cabeçalho */
+    padding: 1rem 2rem;            /* Preenchimento superior/inferior e lateral */
+    display: flex;                 /* Habilita flexbox para alinhar itens */
+    justify-content: space-between;/* Distribui espaço entre os itens */
+    align-items: center;           /* Alinha itens verticalmente */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Sombra */
+    z-index: 1000;                 /* Garante que o cabeçalho fique por cima */
+    position: relative;            /* Necessário para z-index */
+    border-bottom-left-radius: 0.5rem; /* Borda arredondada inferior esquerda */
+    border-bottom-right-radius: 0.5rem;/* Borda arredondada inferior direita */
 }
 
-.setting-group input[type="range"]::-webkit-slider-thumb:active {
-    cursor: grabbing;
+.header-left-content {
+    display: flex;                 /* Habilita flexbox para logo e título */
+    align-items: center;           /* Alinha itens verticalmente */
+    margin-bottom: 0;              /* Remove margem inferior padrão (será ajustado via media query) */
 }
 
-.setting-group input[type="range"]::-moz-range-thumb {
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
-    background: var(--light-blue-green);
-    cursor: grab;
-    box-shadow: 0 0 5px rgba(0, 204, 153, 0.7);
-    transition: background-color 0.2s;
+.logo-ufrn {
+    height: 40px;                  /* Altura fixa do logo */
+    width: 40px;                   /* Largura fixa do logo */
+    margin-right: 10px;            /* Espaço à direita do logo */
+    border-radius: 10%;            /* Leve arredondamento */
 }
 
-.setting-group input[type="color"] {
-    -webkit-appearance: none;
-    border: none;
-    width: 60px;
-    height: 30px;
-    background: none;
-    cursor: pointer;
-    border-radius: 5px;
-    overflow: hidden;
+.main-title {
+    margin: 0;                     /* Remove margem padrão do h1 */
+    font-size: 1.8rem;             /* Tamanho da fonte */
+    color: var(--white);           /* Cor do título */
+    font-weight: bold;             /* Peso da fonte */
 }
 
-.setting-group input[type="color"]::-webkit-color-swatch-wrapper {
-    padding: 0;
+/* Estilo do Botão de Login */
+.btn-login {
+    border: none;                  /* Sem borda */
+    color: var(--white);           /* Cor do texto */
+    padding: 15px 18px;            /* Preenchimento */
+    background-color: var(--light-blue-green); /* Cor de fundo */
+    border-radius: 8px;            /* Arredondamento */
+    font-weight: 600;              /* Peso da fonte */
+    cursor: pointer;               /* Cursor de ponteiro */
+    transition: background-color 0.3s ease, transform 0.2s ease; /* Transições */
 }
 
-.setting-group input[type="color"]::-webkit-color-swatch {
-    border: 2px solid var(--border-color);
-    border-radius: 5px;
+.btn-login:hover {
+    background-color: #008060;     /* Cor de fundo no hover */
+    transform: translateY(-2px);   /* Efeito de elevação */
 }
 
-.btn-reset {
-    background-color: var(--light-blue-green);
-    color: var(--dark-blue);
-    border: none;
-    padding: 10px 15px;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 1rem;
-    margin-top: 1rem;
+/* ----------------------------------------------------------------------------- */
+/* Estilos da Área Principal de Conteúdo (Main Layout) */
+/* ----------------------------------------------------------------------------- */
+.main-layout {
+    flex-grow: 1;                  /* Permite que a seção principal ocupe o espaço restante */
+    padding: 1rem 2rem;            /* Preenchimento geral da área principal */
+    display: flex;                 /* Habilita flexbox */
+    flex-direction: column;        /* Organiza os filhos em coluna */
+    gap: 1rem;                     /* Espaçamento entre os principais blocos (gráfico/sidebar e cards) */
+}
+
+.content-section {
+    display: flex;                 /* Habilita flexbox para gráfico e sidebar */
+    flex-direction: column;        /* Padrão em coluna para telas menores */
+    flex-grow: 1;                  /* Permite que ocupe o espaço restante */
+    gap: 1rem;                     /* Espaçamento entre gráfico e sidebar */
+    width: 100%;                   /* Ocupa a largura total */
+}
+
+/* ----------------------------------------------------------------------------- */
+/* Estilos do Contêiner do Gráfico */
+/* ----------------------------------------------------------------------------- */
+.chart-container {
+    background-color: var(--card-background); /* Fundo */
+    padding: 1.5rem;               /* Preenchimento */
+    border-radius: 10px;           /* Arredondamento */
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.6); /* Sombra forte para destaque */
+    display: flex;                 /* Habilita flexbox para organizar itens internos */
+    flex-direction: column;        /* Organiza filhos em coluna */
+    justify-content: space-between;/* Distribui espaço */
+    min-width: 300px;              /* Largura mínima */
+    flex-grow: 1;                  /* Permite que ocupe o espaço restante na linha */
+}
+
+.chart-title {
+    color: var(--light-blue-green); /* Cor do título */
+    text-align: center;            /* Centraliza */
+    margin-top: 0;                 /* Remove margem superior */
+    margin-bottom: 1.5rem;         /* Margem inferior */
+    font-size: 1.5rem;             /* Tamanho da fonte */
+    font-weight: 600;              /* Peso da fonte */
+}
+
+.chart-canvas {
+    flex-grow: 1;                  /* Permite que o canvas ocupe o espaço restante */
+    max-height: 500px;             /* Altura máxima */
+    width: 100% !important;        /* Garante 100% de largura */
+    height: auto !important;       /* Altura automática */
+    background-color: var(--card-background); /* Fundo do canvas (para áreas vazias) */
+}
+
+/* ----------------------------------------------------------------------------- */
+/* Estilos da Barra Lateral (Sidebar) */
+/* ----------------------------------------------------------------------------- */
+.side-controls {
+    display: flex;                 /* Habilita flexbox */
+    flex-direction: column;        /* Organiza filhos em coluna */
+    min-width: 280px;              /* Largura mínima */
+    gap: 1rem;                     /* Espaçamento entre as caixas internas da sidebar */
+    flex-shrink: 0;                /* Evita que a sidebar encolha mais que o necessário */
+}
+
+/* Contêiner para as Abas e seus Conteúdos */
+.tabs-control-container {
+    background-color: var(--card-background); /* Fundo */
+    padding: 1.5rem;               /* Preenchimento */
+    border-radius: 10px;           /* Arredondamento */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3); /* Sombra */
+    flex-grow: 1;                  /* Permite que ocupe o espaço restante */
+    display: flex;                 /* Habilita flexbox para layout interno */
+    flex-direction: column;        /* Organiza filhos em coluna */
+}
+
+/* Cabeçalhos das Abas */
+.tabs-header {
+    display: flex;                 /* Habilita flexbox para os botões de aba */
+    justify-content: space-around; /* Distribui espaço entre os botões */
+    margin-bottom: 1.5rem;         /* Margem inferior */
+    border-bottom: 2px solid var(--border-color); /* Borda inferior */
+}
+
+.tab-button {
+    flex: 1;                       /* Cada botão ocupa espaço igual */
+    padding: 0.75rem 0;            /* Preenchimento */
+    font-size: 1.125rem;           /* Tamanho da fonte */
+    font-weight: 500;              /* Peso da fonte */
+    text-align: center;            /* Centraliza texto */
+    border: none;                  /* Sem borda */
+    background: none;              /* Fundo padrão */
+    color: var(--text-color);      /* Cor do texto padrão */
+    border-bottom: 2px solid transparent; /* Borda inferior transparente */
+    cursor: pointer;               /* Cursor de ponteiro */
+    transition: border-color 0.3s, color 0.3s, background-color 0.3s; /* Transições suaves */
+    white-space: nowrap;           /* Evita quebra de linha */
+    border-top-left-radius: 8px; /* Arredonda borda superior esquerda */
+    border-top-right-radius: 8px; /* Arredonda borda superior direita */
+}
+
+.tab-button:hover {
+    border-color: var(--light-blue-green); /* Cor da borda no hover */
+}
+
+.tab-button.active {
+    color: var(--light-blue-green); /* Cor do texto da aba ativa */
+    border-color: var(--light-blue-green); /* Cor da borda da aba ativa */
+    background-color: var(--card-background); /* Fundo para a aba selecionada */
+}
+
+/* Conteúdo das Abas */
+.tab-content {
+    display: flex;                 /* Habilita flexbox para o conteúdo da aba */
+    flex-direction: column;        /* Organiza filhos em coluna */
+    gap: 1.25rem;                  /* Espaçamento entre os grupos de configuração */
+    flex-grow: 1;                  /* Permite que o conteúdo ocupe o espaço restante */
+}
+
+.hidden-content {
+    display: none; /* Esconde o conteúdo da aba */
+}
+
+/* ----------------------------------------------------------------------------- */
+/* Estilos para Grupos de Configuração Comuns */
+/* ----------------------------------------------------------------------------- */
+.setting-group {
+    display: flex;                 /* Habilita flexbox */
+    flex-direction: column;        /* Organiza filhos em coluna */
+    align-items: center;           /* Centraliza itens horizontalmente */
+    gap: 0.75rem;                  /* Espaçamento entre elementos no grupo */
+    margin-bottom: 1.2rem;         /* Margem inferior para separar grupos */
+}
+
+.setting-group-inline { /* Para elementos lado a lado */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 1.2rem;
+}
+
+.setting-label {
+    margin-bottom: 0.5rem;         /* Margem inferior para o label (ajustado para dar espaço) */
+    color: var(--text-color);      /* Cor do texto */
+    font-size: 1.125rem;           /* Tamanho da fonte (igual ao Modo de Operação) */
+    font-weight: 500;              /* Peso da fonte */
+}
+
+.setting-label-mb { /* Label com margem inferior para alinhamento (reduzida) */
+    margin-bottom: 0.25rem; /* Diminuído para diminuir o espaço */
+    color: var(--text-color);
+    font-size: 1.125rem;
+    font-weight: 500;
+}
+
+/* ----------------------------------------------------------------------------- */
+/* Estilos do Toggle Switch (Malha Aberta/Malha Fechada) */
+/* ----------------------------------------------------------------------------- */
+.setting-group-toggle { /* Novo grupo para o label e o wrapper do toggle */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem; /* Espaço entre o label "Modo de Operação" e o wrapper do toggle */
+    margin-bottom: 1.2rem;
+}
+
+.toggle-control-wrapper { /* Novo wrapper para os labels do modo e o toggle switch */
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Espaçamento entre os labels e o toggle */
     width: 100%;
-    transition: background-color 0.3s ease, transform 0.2s ease;
+    max-width: 320px; /* Um pouco maior para acomodar os labels */
+    gap: 0.75rem; /* Espaçamento entre o label e o toggle */
+}
+
+.toggle-switch {
+    position: relative;            /* Base para posicionamento absoluto do slider */
+    width: 80px;                   /* Largura do switch menor */
+    min-width: 80px;               /* Largura mínima para o switch */
+    height: 2.2rem;                /* Altura do toggle */
+    border-radius: 9999px;         /* Completamente arredondado */
+    background-color: var(--border-color); /* Fundo da trilha */
+    display: flex;                 /* Habilita flexbox para o slider */
+    align-items: center;           /* Centraliza itens verticalmente */
+    padding: 0.2rem;               /* Preenchimento interno */
+    cursor: pointer;               /* Cursor de ponteiro */
+}
+
+.toggle-input {
+    /* Esconde o input original, mas mantém sua funcionalidade */
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    cursor: pointer;
+    z-index: 2; /* Acima do slider para capturar cliques */
+}
+
+.toggle-mode-label { /* Estilo para os nomes "Malha Aberta" e "Malha Fechada" */
+    color: var(--text-color); /* Cor padrão do texto, sempre visível */
+    font-weight: 500;
+    font-size: 1.0rem; /* Ajuste para caber melhor, similar a outros textos de rótulo */
+    transition: color 0.3s;
+    white-space: nowrap; /* Evita quebra de linha */
+    text-align: center;
+    flex-grow: 1; /* Permite que o label cresça para ocupar espaço */
+}
+
+/* O slider se move, mas os labels permanecem nos lugares */
+.toggle-slider {
+    position: absolute;            /* "Polegar" do toggle */
+    left: 0.2rem;                 /* Posição inicial (igual ao padding do .toggle-switch) */
+    width: calc(50% - 0.2rem);    /* Largura do slider (metade do switch - padding) */
+    height: calc(100% - 0.4rem);   /* Altura do slider (total - 2*padding) */
+    background-color: var(--light-blue-green); /* Cor do slider */
+    border-radius: 9999px;         /* Completamente arredondado */
+    box-shadow: 0 0 5px rgba(0, 204, 153, 0.7); /* Sombra */
+    transition: transform 0.3s ease-in-out; /* Transição de movimento */
+}
+
+/* Movimenta o slider para a direita quando o input é marcado */
+.toggle-input:checked ~ .toggle-slider {
+    transform: translateX(calc(100% + 0.4rem)); /* Move o slider para a direita (width + 2*padding_interno) */
+}
+
+/* Classe adicionada/removida via JS para destacar o label selecionado */
+.toggle-mode-label.active {
+    color: var(--light-blue-green); /* Cor de destaque para o label ativo */
+}
+
+
+/* ----------------------------------------------------------------------------- */
+/* Estilos dos Radio Buttons (Seleção da Planta) */
+/* ----------------------------------------------------------------------------- */
+.radio-group {
+    display: flex;                 /* Habilita flexbox para as opções de rádio */
+    flex-direction: column;        /* Organiza as opções em coluna */
+    gap: 0.25rem;                  /* Espaçamento entre as opções (diminuído) */
+    width: 100%;                   /* Ocupa a largura total */
+    text-align: left;              /* Alinha o texto à esquerda */
+}
+
+.radio-label {
+    display: flex;                 /* Habilita flexbox para input e texto do label */
+    align-items: center;           /* Centraliza verticalmente */
+    padding: 0.5rem;               /* Preenchimento */
+    border-radius: 0.375rem;       /* Arredondamento */
+    cursor: pointer;               /* Cursor de ponteiro */
+    transition: background-color 0.2s; /* Transição de fundo */
+    font-size: 1rem; /* Tamanho da fonte para "Planta 1", etc. */
+}
+
+.radio-label:hover {
+    background-color: var(--border-color); /* Fundo no hover */
+}
+
+.radio-label input[type="radio"] {
+    /* Esconde o input de rádio original */
+    appearance: none;
+    -webkit-appearance: none;
+    width: 1.25rem;                /* Tamanho personalizado */
+    height: 1.25rem;
+    border: 2px solid var(--text-color); /* Borda padrão */
+    border-radius: 50%;            /* Circular */
+    margin-right: 0.5rem;          /* Espaço à direita */
+    position: relative;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;          /* Transição para todas as propriedades */
+}
+
+.radio-label input[type="radio"]:checked {
+    background-color: var(--light-blue-green); /* Fundo quando checado */
+    border-color: var(--light-blue-green); /* Borda quando checado */
+}
+
+/* Cria o ponto interno quando o rádio está checado */
+.radio-label input[type="radio"]:checked::after {
+    content: '';
+    width: 0.6rem;                 /* Tamanho do ponto */
+    height: 0.6rem;
+    background-color: var(--white); /* Cor do ponto */
+    border-radius: 50%;            /* Circular */
+    display: block;                /* Garante visibilidade */
+}
+
+/* Estilo para radio buttons desabilitados */
+.radio-group input[type="radio"]:disabled {
+    cursor: not-allowed; /* Altera o cursor para indicar que não é clicável */
+    opacity: 0.6; /* Reduz a opacidade para indicar desabilitado */
+    border-color: var(--border-color); /* Cor de borda diferente quando desabilitado */
+}
+
+.radio-group input[type="radio"]:disabled + * { /* Estilo para o label de um radio button desabilitado */
+    cursor: not-allowed;
+    color: var(--border-color); /* Cor do texto mais fraca */
+}
+
+
+/* ----------------------------------------------------------------------------- */
+/* Estilos do Indicador de Status (Capacitor) */
+/* ----------------------------------------------------------------------------- */
+.status-indicator {
+    width: 20px;                   /* Largura fixa */
+    height: 20px;                  /* Altura fixa */
+    border-radius: 50%;            /* Circular */
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.3); /* Sombra */
+    transition: background-color 0.3s; /* Transição de cor */
+}
+
+.status-indicator.status-green {
+    background-color: var(--green-status); /* Cor verde */
+}
+
+.status-indicator.status-red {
+    background-color: var(--red-status);   /* Cor vermelha */
+}
+
+/* ----------------------------------------------------------------------------- */
+/* Estilos do Botão Descarregar Capacitor */
+/* ----------------------------------------------------------------------------- */
+.btn-capacitor {
+    background-color: var(--light-blue-green); /* Fundo */
+    color: var(--white);           /* Texto */
+    padding: 15px 18px;            /* Preenchimento (igual ao btn-login) */
+    border-radius: 8px;            /* Arredondamento (igual ao btn-login) */
+    font-weight: 600;              /* Peso da fonte */
+    border: none;                  /* Sem borda */
+    cursor: pointer;               /* Cursor de ponteiro */
+    transition: background-color 0.3s ease, transform 0.2s ease; /* Transições */
+    flex-grow: 1;                  /* Permite que o botão cresça */
+}
+
+.btn-capacitor:hover {
+    background-color: #008060;     /* Fundo no hover */
+    transform: translateY(-2px);   /* Efeito de elevação */
+}
+
+/* ----------------------------------------------------------------------------- */
+/* Estilos do Painel de Configurações do Gráfico */
+/* ----------------------------------------------------------------------------- */
+.chart-settings-panel {
+    background-color: var(--card-background); /* Fundo */
+    padding: 1.5rem;               /* Preenchimento */
+    border-radius: 10px;           /* Arredondamento */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3); /* Sombra */
+}
+
+.panel-title {
+    color: var(--light-blue-green); /* Cor do título */
+    font-size: 1.25rem;            /* Tamanho da fonte */
+    font-weight: 600;              /* Peso da fonte */
+    text-align: center;            /* Centraliza */
+    margin-top: 0;                 /* Remove margem superior */
+    margin-bottom: 1.25rem;        /* Margem inferior */
+}
+
+/* ----------------------------------------------------------------------------- */
+/* Estilos do Input de Range (Ajuste de Escala) */
+/* ----------------------------------------------------------------------------- */
+.scale-range-input {
+    -webkit-appearance: none;      /* Remove a aparência padrão */
+    appearance: none;
+    width: 100%;                   /* Largura total */
+    height: 8px;                   /* Altura da trilha */
+    background: var(--border-color); /* Cor da trilha */
+    border-radius: 5px;            /* Arredondamento da trilha */
+    outline: none;                 /* Remove contorno */
+    opacity: 0.8;                  /* Transparência */
+    transition: opacity .2s;       /* Transição */
+    margin-top: 5px;               /* Margem superior */
+}
+
+/* Estilo do "polegar" do slider para WebKit (Chrome, Safari) */
+.scale-range-input::-webkit-slider-thumb {
+    -webkit-appearance: none;      /* Remove aparência padrão */
+    appearance: none;
+    width: 20px;                   /* Tamanho do polegar */
+    height: 20px;
+    border-radius: 50%;            /* Circular */
+    background: var(--light-blue-green); /* Cor do polegar */
+    cursor: grab;                  /* Cursor de arrastar */
+    box-shadow: 0 0 5px rgba(0, 204, 153, 0.7); /* Sombra */
+    transition: background-color 0.2s; /* Transição */
+}
+
+.scale-range-input::-webkit-slider-thumb:active {
+    cursor: grabbing;              /* Cursor ao arrastar */
+}
+
+/* Estilo do "polegar" do slider para Firefox */
+.scale-range-input::-moz-range-thumb {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: var(--light-blue-green);
+    cursor: grab;
+    box-shadow: 0 0 5px rgba(0, 204, 153, 0.7);
+    transition: background-color 0.2s;
+}
+
+.scale-value-display {
+    text-align: center;            /* Centraliza o texto */
+    margin-top: 0.5rem;            /* Margem superior */
+    color: var(--text-color);      /* Cor do texto */
+}
+
+/* ----------------------------------------------------------------------------- */
+/* Estilos dos Seletores de Cor */
+/* ----------------------------------------------------------------------------- */
+.setting-group-colors {
+    display: flex;                 /* Habilita flexbox para alinhar seletores de cor e botão de reset */
+    flex-wrap: wrap;               /* Permite quebra de linha em telas menores */
+    align-items: center;           /* Centraliza verticalmente */
+    justify-content: space-around; /* Distribui espaço */
+    gap: 1rem;                     /* Espaçamento entre os itens */
+    margin-bottom: 1rem;           /* Margem inferior */
+}
+
+.color-label {
+    display: flex;                 /* Habilita flexbox para label e input */
+    align-items: center;           /* Centraliza verticalmente */
+    gap: 0.5rem;                   /* Espaçamento */
+    font-size: 1.125rem;           /* Tamanho da fonte */
+    font-weight: 500;              /* Peso da fonte */
+    color: var(--text-color);      /* Cor do texto */
+}
+
+.color-input {
+    -webkit-appearance: none;      /* Remove aparência padrão */
+    border: none;                  /* Sem borda */
+    width: 48px;                   /* Largura fixa */
+    height: 48px;                  /* Altura fixa */
+    background: none;              /* Sem fundo */
+    cursor: pointer;               /* Cursor de ponteiro */
+    border-radius: 0.375rem;       /* Arredondamento */
+    overflow: hidden;              /* Esconde overflow */
+    vertical-align: middle;        /* Alinha verticalmente */
+}
+
+/* Estilo da amostra de cor para WebKit */
+.color-input::-webkit-color-swatch-wrapper {
+    padding: 0;                    /* Remove padding */
+}
+
+.color-input::-webkit-color-swatch {
+    border: 2px solid var(--border-color); /* Borda */
+    border-radius: 0.375rem;       /* Arredondamento */
+}
+
+/* ----------------------------------------------------------------------------- */
+/* Estilos do Botão Redefinir Cores */
+/* ----------------------------------------------------------------------------- */
+.btn-reset {
+    background-color: var(--light-blue-green); /* Fundo */
+    color: var(--white);           /* Texto */
+    padding: 15px 18px;            /* Preenchimento (igual aos botões de login/capacitor) */
+    border-radius: 8px;            /* Arredondamento (igual aos botões de login/capacitor) */
+    font-weight: 600;              /* Peso da fonte */
+    border: none;                  /* Sem borda */
+    cursor: pointer;               /* Cursor de ponteiro */
+    transition: background-color 0.3s ease, transform 0.2s ease; /* Transições */
+    width: 100%;                   /* Botão ocupa a largura total da linha */
+    /* flex-shrink: 0; foi removido */
 }
 
 .btn-reset:hover {
-    background-color: #008060; /* Um tom ligeiramente mais escuro */
-    transform: translateY(-2px);
+    background-color: #008060;     /* Fundo no hover */
+    transform: translateY(-2px);   /* Efeito de elevação */
 }
 
-/* Values Display */
-.values-display {
-    display: flex;
-    justify-content: space-around;
-    gap: 1.5rem;
-    flex-wrap: wrap; /* Para responsividade */
+/* ----------------------------------------------------------------------------- */
+/* Estilos da Seção de Exibição de Valores (Cards Set Point, MV, Saída) */
+/* ----------------------------------------------------------------------------- */
+.values-display-section {
+    display: flex;                 /* Habilita flexbox para os cards */
+    justify-content: space-around; /* Distribui espaço */
+    gap: 1.5rem;                   /* Espaçamento entre cards */
+    flex-wrap: wrap;               /* Permite quebra de linha */
+    margin-top: 1.5rem;            /* Margem superior para separar do gráfico */
 }
 
 .value-card {
-    background-color: var(--card-background);
-    padding: 1.5rem 2rem;
-    border-radius: 10px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-    text-align: center;
-    min-width: 180px;
-    flex: 1; /* Para distribuir o espaço */
-    transition: transform 0.3s ease, border 0.3s ease;
-    border: 2px solid transparent;
+    background-color: var(--card-background); /* Fundo do card */
+    padding: 1.5rem 2rem;          /* Preenchimento */
+    border-radius: 10px;           /* Arredondamento */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3); /* Sombra */
+    text-align: center;            /* Centraliza texto */
+    min-width: 180px;              /* Largura mínima */
+    flex: 1;                       /* Permite crescimento e encolhimento */
+    transition: transform 0.3s ease, border 0.3s ease; /* Transições */
+    border: 2px solid transparent; /* Borda transparente */
 }
 
 .value-card:hover {
-    transform: translateY(-5px);
-    border: 2px solid var(--light-blue-green);
+    transform: translateY(-5px);   /* Efeito de elevação no hover */
+    border: 2px solid var(--light-blue-green); /* Borda verde no hover */
 }
 
-.value-card span:first-child {
-    display: block;
-    font-size: 1.1rem;
-    color: var(--text-color);
-    margin-bottom: 0.5rem;
+.value-label {
+    display: block;                /* Garante que ocupe a largura total */
+    font-size: 1.1rem;             /* Tamanho da fonte */
+    color: var(--text-color);      /* Cor do texto */
+    margin-bottom: 0.5rem;         /* Margem inferior */
 }
 
-.value-card .value {
-    font-size: 2.5rem;
-    font-weight: bold;
-    color: var(--light-blue-green);
-    text-shadow: 0 0 8px rgba(0, 204, 153, 0.7);
+.display-value {
+    font-size: 2.5rem;             /* Tamanho grande da fonte */
+    font-weight: bold;             /* Negrito */
+    color: var(--light-blue-green); /* Cor do valor */
+    text-shadow: 0 0 8px rgba(0, 204, 153, 0.7); /* Efeito de brilho */
 }
 
-/* Specific card colors (optional, for visual distinction) */
-.setpoint-card .value { color: #00cc99;}
-.mv-card .value { color: #00cc99;}
-.output-card .value { color: #00cc99;}
+/* Cores específicas dos cards (opcional, para distinção visual) */
+.setpoint-card .display-value { color: #00cc99;}
+.mv-card .display-value { color: #00cc99;}
+.output-card .display-value { color: #00cc99;}
 
-/* Responsividade */
+/* ----------------------------------------------------------------------------- */
+/* Ajustes de Design Responsivo (Media Queries) */
+/* ----------------------------------------------------------------------------- */
+/* Telas maiores que 1024px (desktop) */
+@media (min-width: 1024px) {
+    .content-section {
+        flex-direction: row; /* Gráfico e sidebar lado a lado */
+    }
+    .chart-container {
+        max-width: calc(100% - 24rem - 1rem); /* Ajusta largura para caber sidebar (24rem) e gap (1rem) */
+    }
+    .side-controls {
+        width: 24rem; /* Largura fixa para a sidebar */
+    }
+}
+
+/* Telas com largura máxima de 1024px (tablets e alguns desktops menores) */
 @media (max-width: 1024px) {
-    .main-content {
-        flex-direction: column;
-        align-items: center;
+    .content-section {
+        flex-direction: column;    /* Empilha gráfico e sidebar verticalmente */
+        align-items: center;       /* Centraliza itens */
     }
-    .chart-container, .sidebar {
-        width: 95%; /* Quase largura total */
-        max-width: 800px; /* Limite para telas grandes */
+    .chart-container, .side-controls {
+        width: 95%;                /* Quase largura total */
+        max-width: 800px;          /* Limite para telas grandes */
     }
-    .values-display {
-        flex-direction: column;
-        align-items: center;
+    .values-display-section {
+        flex-direction: column;    /* Empilha os cards de valor verticalmente */
+        align-items: center;       /* Centraliza os cards */
     }
     .value-card {
-        width: 95%;
-        max-width: 400px; /* Limite para telas grandes */
+        width: 95%;                /* Ocupa quase a largura total */
+        max-width: 400px;          /* Limite para telas grandes */
     }
 }
 
+/* Telas com largura máxima de 768px (tablets e smartphones em paisagem) */
 @media (max-width: 768px) {
-    header {
-        flex-direction: column;
-        gap: 1rem;
-        padding: 1rem;
+    .main-header {
+        flex-direction: column;    /* Empilha elementos do cabeçalho verticalmente */
+        gap: 1rem;                 /* Espaçamento entre elementos do cabeçalho */
+        padding: 1rem;             /* Preenchimento reduzido */
     }
-    .header-right {
-        flex-direction: column;
-        gap: 10px;
-        width: 100%;
-        align-items: center;
+    .main-title {
+        font-size: 1.5rem;         /* Reduz o tamanho da fonte do título do cabeçalho */
     }
-    .dropbtn {
-        width: 80%;
-        text-align: center;
-        justify-content: center;
+    .btn-login {
+        width: 100%;               /* Botão de login em largura total */
     }
-    .dropdown-content {
-        width: 100%;
-        left: 0;
-        right: 0;
-    }
-    main {
-        padding: 1rem;
+    .main-layout {
+        padding: 1rem;             /* Preenchimento reduzido para o conteúdo principal */
     }
 }
 
+/* Telas com largura máxima de 480px (smartphones em retrato) */
 @media (max-width: 480px) {
-    .header-left h1 {
-        font-size: 1.5rem;
+    .main-title {
+        font-size: 1.3rem;         /* Reduz ainda mais o tamanho da fonte do título do cabeçalho */
     }
-    .value-card .value {
-        font-size: 2rem;
+    .display-value {
+        font-size: 2rem;           /* Reduz o tamanho da fonte dos valores nos cards */
     }
-    .chart-container h2 {
-        font-size: 1.3rem;
+    .chart-title {
+        font-size: 1.3rem;         /* Reduz o tamanho da fonte do título do gráfico */
     }
-    .sidebar h3 {
-        font-size: 1.1rem;
+    .panel-title {
+        font-size: 1.1rem;         /* Reduz o tamanho da fonte dos títulos do painel lateral */
+    }
+    .tab-button {
+        font-size: 1rem;           /* Reduz o tamanho da fonte dos botões das abas */
+    }
+    .setting-label, .setting-label-mb, .color-label {
+        font-size: 0.9rem;         /* Reduz o tamanho da fonte dos labels de configuração */
+    }
+    .btn-capacitor, .btn-reset {
+        padding: 10px 20px;        /* Reduz o padding dos botões */
+        font-size: 0.9rem;         /* Reduz o tamanho da fonte dos botões */
     }
 }
 
-
-canvas {
-    background-color: var(--card-background); /* Garante que o fundo do canvas combine */
-}
