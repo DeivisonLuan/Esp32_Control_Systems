@@ -10,14 +10,14 @@
 /* Variáveis CSS: Definições de Cores para Consistência Visual */
 /* ----------------------------------------------------------------------------- */
 :root {
-    --dark-blue: #0A192F;        /* Fundo principal e cabeçalho */
+    --dark-blue: #0A192F;           /* Fundo principal e cabeçalho */
     --light-blue-green: #00CC99; /* Cor de destaque para botões, estados ativos, valores importantes e linhas de gráfico */
-    --white: #F0EDE5;            /* Texto de alto contraste */
-    --text-color: #E6F1FF;       /* Texto geral (azul claro suave) */
-    --border-color: #2D3A5D;     /* Bordas, divisores e fundos de controles */
-    --card-background: #1C2B47;  /* Fundo de cards e painéis */
-    --green-status: #22c55e;     /* Cor para o indicador de status verde */
-    --red-status: #ef4444;       /* Cor para o indicador de status vermelho */
+    --white: #F0EDE5;               /* Texto de alto contraste */
+    --text-color: #E6F1FF;          /* Texto geral (azul claro suave) */
+    --border-color: #2D3A5D;        /* Bordas, divisores e fundos de controles */
+    --card-background: #1C2B47;     /* Fundo de cards e painéis */
+    --green-status: #22c55e;        /* Cor para o indicador de status verde */
+    --red-status: #ef4444;          /* Cor para o indicador de status vermelho */
 }
 
 /* ----------------------------------------------------------------------------- */
@@ -34,12 +34,12 @@ html, body {
 .body-base {
     font-family: 'Inter', sans-serif; /* Define a família da fonte */
     background-color: var(--dark-blue); /* Cor de fundo */
-    color: var(--text-color);      /* Cor de texto padrão */
-    line-height: 1.6;              /* Altura da linha para legibilidade */
-    min-height: 100vh;             /* Garante que o corpo ocupe toda a altura da viewport */
-    display: flex;                 /* Habilita o layout flexbox para organização vertical */
-    flex-direction: column;        /* Organiza os filhos em coluna */
-    overflow-x: hidden;            /* Previne rolagem horizontal */
+    color: var(--text-color);       /* Cor de texto padrão */
+    line-height: 1.6;               /* Altura da linha para legibilidade */
+    min-height: 100vh;              /* Garante que o corpo ocupe toda a altura da viewport */
+    display: flex;                  /* Habilita o layout flexbox para organização vertical */
+    flex-direction: column;         /* Organiza os filhos em coluna */
+    overflow-x: hidden;             /* Previne rolagem horizontal */
 }
 
 /* Remove o contorno de foco padrão do navegador para uma aparência mais limpa */
@@ -53,71 +53,71 @@ html, body {
 /* ----------------------------------------------------------------------------- */
 .main-header {
     background-color: var(--dark-blue); /* Cor de fundo do cabeçalho */
-    padding: 1rem 2rem;            /* Preenchimento superior/inferior e lateral */
-    display: flex;                 /* Habilita flexbox para alinhar itens */
+    padding: 1rem 2rem;                 /* Preenchimento superior/inferior e lateral */
+    display: flex;                  /* Habilita flexbox para alinhar itens */
     justify-content: space-between;/* Distribui espaço entre os itens */
-    align-items: center;           /* Alinha itens verticalmente */
+    align-items: center;            /* Alinha itens verticalmente */
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Sombra */
-    z-index: 1000;                 /* Garante que o cabeçalho fique por cima */
-    position: relative;            /* Necessário para z-index */
+    z-index: 1000;                  /* Garante que o cabeçalho fique por cima */
+    position: relative;             /* Necessário para z-index */
     border-bottom-left-radius: 0.5rem; /* Borda arredondada inferior esquerda */
     border-bottom-right-radius: 0.5rem;/* Borda arredondada inferior direita */
 }
 
 .header-left-content {
-    display: flex;                 /* Habilita flexbox para logo e título */
-    align-items: center;           /* Alinha itens verticalmente */
-    margin-bottom: 0;              /* Remove margem inferior padrão (será ajustado via media query) */
+    display: flex;                  /* Habilita flexbox para logo e título */
+    align-items: center;            /* Alinha itens verticalmente */
+    margin-bottom: 0;               /* Remove margem inferior padrão (será ajustado via media query) */
 }
 
 .logo-ufrn {
-    height: 40px;                  /* Altura fixa do logo */
-    width: 40px;                   /* Largura fixa do logo */
-    margin-right: 10px;            /* Espaço à direita do logo */
-    border-radius: 10%;            /* Leve arredondamento */
+    height: 40px;                   /* Altura fixa do logo */
+    width: 40px;                    /* Largura fixa do logo */
+    margin-right: 10px;             /* Espaço à direita do logo */
+    border-radius: 10%;             /* Leve arredondamento */
 }
 
 .main-title {
-    margin: 0;                     /* Remove margem padrão do h1 */
-    font-size: 1.8rem;             /* Tamanho da fonte */
-    color: var(--white);           /* Cor do título */
-    font-weight: bold;             /* Peso da fonte */
+    margin: 0;                      /* Remove margem padrão do h1 */
+    font-size: 1.8rem;              /* Tamanho da fonte */
+    color: var(--white);            /* Cor do título */
+    font-weight: bold;              /* Peso da fonte */
 }
 
 /* Estilo do Botão de Login */
 .btn-login {
-    border: none;                  /* Sem borda */
-    color: var(--white);           /* Cor do texto */
-    padding: 15px 18px;            /* Preenchimento */
+    border: none;                   /* Sem borda */
+    color: var(--white);            /* Cor do texto */
+    padding: 15px 18px;             /* Preenchimento */
     background-color: var(--light-blue-green); /* Cor de fundo */
-    border-radius: 8px;            /* Arredondamento */
-    font-weight: 600;              /* Peso da fonte */
-    cursor: pointer;               /* Cursor de ponteiro */
+    border-radius: 8px;             /* Arredondamento */
+    font-weight: 600;               /* Peso da fonte */
+    cursor: pointer;                /* Cursor de ponteiro */
     transition: background-color 0.3s ease, transform 0.2s ease; /* Transições */
 }
 
 .btn-login:hover {
-    background-color: #008060;     /* Cor de fundo no hover */
-    transform: translateY(-2px);   /* Efeito de elevação */
+    background-color: #008060;      /* Cor de fundo no hover */
+    transform: translateY(-2px);    /* Efeito de elevação */
 }
 
 /* ----------------------------------------------------------------------------- */
 /* Estilos da Área Principal de Conteúdo (Main Layout) */
 /* ----------------------------------------------------------------------------- */
 .main-layout {
-    flex-grow: 1;                  /* Permite que a seção principal ocupe o espaço restante */
-    padding: 1rem 2rem;            /* Preenchimento geral da área principal */
-    display: flex;                 /* Habilita flexbox */
-    flex-direction: column;        /* Organiza os filhos em coluna */
-    gap: 1rem;                     /* Espaçamento entre os principais blocos (gráfico/sidebar e cards) */
+    flex-grow: 1;                   /* Permite que a seção principal ocupe o espaço restante */
+    padding: 1rem 2rem;             /* Preenchimento geral da área principal */
+    display: flex;                  /* Habilita flexbox */
+    flex-direction: column;         /* Organiza os filhos em coluna */
+    gap: 1rem;                      /* Espaçamento entre os principais blocos (gráfico/sidebar e cards) */
 }
 
 .content-section {
-    display: flex;                 /* Habilita flexbox para gráfico e sidebar */
-    flex-direction: column;        /* Padrão em coluna para telas menores */
-    flex-grow: 1;                  /* Permite que ocupe o espaço restante */
-    gap: 1rem;                     /* Espaçamento entre gráfico e sidebar */
-    width: 100%;                   /* Ocupa a largura total */
+    display: flex;                  /* Habilita flexbox para gráfico e sidebar */
+    flex-direction: column;         /* Padrão em coluna para telas menores */
+    flex-grow: 1;                   /* Permite que ocupe o espaço restante */
+    gap: 1rem;                      /* Espaçamento entre gráfico e sidebar */
+    width: 100%;                    /* Ocupa a largura total */
 }
 
 /* ----------------------------------------------------------------------------- */
@@ -125,30 +125,30 @@ html, body {
 /* ----------------------------------------------------------------------------- */
 .chart-container {
     background-color: var(--card-background); /* Fundo */
-    padding: 1.5rem;               /* Preenchimento */
-    border-radius: 10px;           /* Arredondamento */
+    padding: 1.5rem;                /* Preenchimento */
+    border-radius: 10px;            /* Arredondamento */
     box-shadow: 0 8px 30px rgba(0, 0, 0, 0.6); /* Sombra forte para destaque */
-    display: flex;                 /* Habilita flexbox para organizar itens internos */
-    flex-direction: column;        /* Organiza filhos em coluna */
+    display: flex;                  /* Habilita flexbox para organizar itens internos */
+    flex-direction: column;         /* Organiza filhos em coluna */
     justify-content: space-between;/* Distribui espaço */
-    min-width: 300px;              /* Largura mínima */
-    flex-grow: 1;                  /* Permite que ocupe o espaço restante na linha */
+    min-width: 300px;               /* Largura mínima */
+    flex-grow: 1;                   /* Permite que ocupe o espaço restante na linha */
 }
 
 .chart-title {
     color: var(--light-blue-green); /* Cor do título */
-    text-align: center;            /* Centraliza */
-    margin-top: 0;                 /* Remove margem superior */
-    margin-bottom: 1.5rem;         /* Margem inferior */
-    font-size: 1.5rem;             /* Tamanho da fonte */
-    font-weight: 600;              /* Peso da fonte */
+    text-align: center;             /* Centraliza */
+    margin-top: 0;                  /* Remove margem superior */
+    margin-bottom: 1.5rem;          /* Margem inferior */
+    font-size: 1.5rem;              /* Tamanho da fonte */
+    font-weight: 600;               /* Peso da fonte */
 }
 
 .chart-canvas {
-    flex-grow: 1;                  /* Permite que o canvas ocupe o espaço restante */
-    max-height: 500px;             /* Altura máxima */
-    width: 100% !important;        /* Garante 100% de largura */
-    height: auto !important;       /* Altura automática */
+    flex-grow: 1;                   /* Permite que o canvas ocupe o espaço restante */
+    max-height: 500px;              /* Altura máxima */
+    width: 100% !important;         /* Garante 100% de largura */
+    height: auto !important;        /* Altura automática */
     background-color: var(--card-background); /* Fundo do canvas (para áreas vazias) */
 }
 
@@ -156,65 +156,70 @@ html, body {
 /* Estilos da Barra Lateral (Sidebar) */
 /* ----------------------------------------------------------------------------- */
 .side-controls {
-    display: flex;                 /* Habilita flexbox */
-    flex-direction: column;        /* Organiza filhos em coluna */
-    min-width: 280px;              /* Largura mínima */
-    gap: 1rem;                     /* Espaçamento entre as caixas internas da sidebar */
-    flex-shrink: 0;                /* Evita que a sidebar encolha mais que o necessário */
+    display: flex;                  /* Habilita flexbox */
+    flex-direction: column;         /* Organiza filhos em coluna */
+    min-width: 280px;               /* Largura mínima */
+    gap: 1rem;                      /* Espaçamento entre as caixas internas da sidebar */
+    flex-shrink: 0;                 /* Evita que a sidebar encolha mais que o necessário */
 }
 
 /* Contêiner para as Abas e seus Conteúdos */
 .tabs-control-container {
     background-color: var(--card-background); /* Fundo */
-    padding: 1.5rem;               /* Preenchimento */
-    border-radius: 10px;           /* Arredondamento */
+    padding: 1.5rem;                /* Preenchimento */
+    border-radius: 10px;            /* Arredondamento */
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3); /* Sombra */
-    flex-grow: 1;                  /* Permite que ocupe o espaço restante */
-    display: flex;                 /* Habilita flexbox para layout interno */
-    flex-direction: column;        /* Organiza filhos em coluna */
+    flex-grow: 1;                   /* Permite que ocupe o espaço restante */
+    display: flex;                  /* Habilita flexbox para layout interno */
+    flex-direction: column;         /* Organiza filhos em coluna */
+    /* NOVO: Min-height e padding-bottom para controlar o espaço interno */
+    min-height: fit-content; /* Ajusta a altura ao conteúdo */
+    padding-bottom: 1rem; /* Reduz o padding inferior */
 }
 
 /* Cabeçalhos das Abas */
 .tabs-header {
-    display: flex;                 /* Habilita flexbox para os botões de aba */
+    display: flex;                  /* Habilita flexbox para os botões de aba */
     justify-content: space-around; /* Distribui espaço entre os botões */
-    margin-bottom: 1.5rem;         /* Margem inferior */
+    margin-bottom: 1.5rem;          /* Margem inferior */
     border-bottom: 2px solid var(--border-color); /* Borda inferior */
 }
 
 .tab-button {
-    flex: 1;                       /* Cada botão ocupa espaço igual */
-    padding: 0.75rem 0;            /* Preenchimento */
-    font-size: 1.125rem;           /* Tamanho da fonte */
-    font-weight: 500;              /* Peso da fonte */
-    text-align: center;            /* Centraliza texto */
-    border: none;                  /* Sem borda */
-    background: none;              /* Fundo padrão */
-    color: var(--text-color);      /* Cor do texto padrão */
+    flex: 1;                        /* Cada botão ocupa espaço igual */
+    padding: 0.75rem 0;             /* Preenchimento */
+    font-size: 1.125rem;            /* Tamanho da fonte */
+    font-weight: 500;               /* Peso da fonte */
+    text-align: center;             /* Centraliza texto */
+    border: none;                   /* Sem borda */
+    background: none;               /* Fundo padrão */
+    color: var(--text-color);       /* Cor do texto padrão */
     border-bottom: 2px solid transparent; /* Borda inferior transparente */
-    cursor: pointer;               /* Cursor de ponteiro */
+    cursor: pointer;                /* Cursor de ponteiro */
     transition: border-color 0.3s, color 0.3s, background-color 0.3s; /* Transições suaves */
-    white-space: nowrap;           /* Evita quebra de linha */
+    white-space: nowrap;            /* Evita quebra de linha */
     border-top-left-radius: 8px; /* Arredonda borda superior esquerda */
     border-top-right-radius: 8px; /* Arredonda borda superior direita */
 }
 
 .tab-button:hover {
-    border-color: var(--light-blue-green); /* Cor da borda no hover */
+    border-color: var(--light-blue-green);
 }
 
 .tab-button.active {
-    color: var(--light-blue-green); /* Cor do texto da aba ativa */
-    border-color: var(--light-blue-green); /* Cor da borda da aba ativa */
-    background-color: var(--card-background); /* Fundo para a aba selecionada */
+    color: var(--light-blue-green);
+    border-color: var(--light-blue-green);
+    background-color: var(--card-background);
 }
 
 /* Conteúdo das Abas */
 .tab-content {
-    display: flex;                 /* Habilita flexbox para o conteúdo da aba */
-    flex-direction: column;        /* Organiza filhos em coluna */
-    gap: 1.25rem;                  /* Espaçamento entre os grupos de configuração */
-    flex-grow: 1;                  /* Permite que o conteúdo ocupe o espaço restante */
+    display: flex;                  /* Habilita flexbox para o conteúdo da aba */
+    flex-direction: column;         /* Organiza filhos em coluna */
+    gap: 1.25rem;                   /* Espaçamento entre os grupos de configuração */
+    flex-grow: 1;                   /* Permite que o conteúdo ocupe o espaço restante */
+    /* NOVO: Ajusta o padding para diminuir o espaço */
+    padding-bottom: 0.5rem; /* Reduz o padding inferior do conteúdo da aba */
 }
 
 .hidden-content {
@@ -225,11 +230,11 @@ html, body {
 /* Estilos para Grupos de Configuração Comuns */
 /* ----------------------------------------------------------------------------- */
 .setting-group {
-    display: flex;                 /* Habilita flexbox */
-    flex-direction: column;        /* Organiza filhos em coluna */
-    align-items: center;           /* Centraliza itens horizontalmente */
-    gap: 0.75rem;                  /* Espaçamento entre elementos no grupo */
-    margin-bottom: 1.2rem;         /* Margem inferior para separar grupos */
+    display: flex;                  /* Habilita flexbox */
+    flex-direction: column;         /* Organiza filhos em coluna */
+    align-items: center;            /* Centraliza itens horizontalmente */
+    gap: 0.75rem;                   /* Espaçamento entre elementos no grupo */
+    margin-bottom: 1.2rem;          /* Margem inferior para separar grupos */
 }
 
 .setting-group-inline { /* Para elementos lado a lado */
@@ -241,10 +246,10 @@ html, body {
 }
 
 .setting-label {
-    margin-bottom: 0.5rem;         /* Margem inferior para o label (ajustado para dar espaço) */
-    color: var(--text-color);      /* Cor do texto */
-    font-size: 1.125rem;           /* Tamanho da fonte (igual ao Modo de Operação) */
-    font-weight: 500;              /* Peso da fonte */
+    margin-bottom: 0.5rem;          /* Margem inferior para o label (ajustado para dar espaço) */
+    color: var(--text-color);       /* Cor do texto */
+    font-size: 1.125rem;            /* Tamanho da fonte (igual ao Modo de Operação) */
+    font-weight: 500;               /* Peso da fonte */
 }
 
 .setting-label-mb { /* Label com margem inferior para alinhamento (reduzida) */
@@ -275,16 +280,16 @@ html, body {
 }
 
 .toggle-switch {
-    position: relative;            /* Base para posicionamento absoluto do slider */
-    width: 80px;                   /* Largura do switch menor */
-    min-width: 80px;               /* Largura mínima para o switch */
-    height: 2.2rem;                /* Altura do toggle */
-    border-radius: 9999px;         /* Completamente arredondado */
+    position: relative;             /* Base para posicionamento absoluto do slider */
+    width: 80px;                    /* Largura do switch menor */
+    min-width: 80px;                /* Largura mínima para o switch */
+    height: 2.2rem;                 /* Altura do toggle */
+    border-radius: 9999px;          /* Completamente arredondado */
     background-color: var(--border-color); /* Fundo da trilha */
-    display: flex;                 /* Habilita flexbox para o slider */
-    align-items: center;           /* Centraliza itens verticalmente */
-    padding: 0.2rem;               /* Preenchimento interno */
-    cursor: pointer;               /* Cursor de ponteiro */
+    display: flex;                  /* Habilita flexbox para o slider */
+    align-items: center;            /* Centraliza itens verticalmente */
+    padding: 0.2rem;                /* Preenchimento interno */
+    cursor: pointer;                /* Cursor de ponteiro */
 }
 
 .toggle-input {
@@ -309,12 +314,12 @@ html, body {
 
 /* O slider se move, mas os labels permanecem nos lugares */
 .toggle-slider {
-    position: absolute;            /* "Polegar" do toggle */
-    left: 0.2rem;                 /* Posição inicial (igual ao padding do .toggle-switch) */
-    width: calc(50% - 0.2rem);    /* Largura do slider (metade do switch - padding) */
-    height: calc(100% - 0.4rem);   /* Altura do slider (total - 2*padding) */
+    position: absolute;             /* "Polegar" do toggle */
+    left: 0.2rem;                   /* Posição inicial (igual ao padding do .toggle-switch) */
+    width: calc(50% - 0.2rem);      /* Largura do slider (metade do switch - padding) */
+    height: calc(100% - 0.4rem);    /* Altura do slider (total - 2*padding) */
     background-color: var(--light-blue-green); /* Cor do slider */
-    border-radius: 9999px;         /* Completamente arredondado */
+    border-radius: 9999px;          /* Completamente arredondado */
     box-shadow: 0 0 5px rgba(0, 204, 153, 0.7); /* Sombra */
     transition: transform 0.3s ease-in-out; /* Transição de movimento */
 }
@@ -326,7 +331,7 @@ html, body {
 
 /* Classe adicionada/removida via JS para destacar o label selecionado */
 .toggle-mode-label.active {
-    color: var(--light-blue-green); /* Cor de destaque para o label ativo */
+    color: var(--light-blue-green);
 }
 
 
@@ -334,69 +339,79 @@ html, body {
 /* Estilos dos Radio Buttons (Seleção da Planta) */
 /* ----------------------------------------------------------------------------- */
 .radio-group {
-    display: flex;                 /* Habilita flexbox para as opções de rádio */
-    flex-direction: column;        /* Organiza as opções em coluna */
-    gap: 0.25rem;                  /* Espaçamento entre as opções (diminuído) */
-    width: 100%;                   /* Ocupa a largura total */
-    text-align: left;              /* Alinha o texto à esquerda */
+    display: flex;                  /* Habilita flexbox para as opções de rádio */
+    flex-direction: column;         /* Padrão em coluna */
+    flex-wrap: wrap;                /* Permite quebra de linha */
+    justify-content: space-between; /* Distribui espaço entre as colunas */
+    gap: 0.5rem;                    /* Espaçamento entre os itens */
+    width: 100%;                    /* Ocupa a largura total */
+    text-align: left;               /* Alinha o texto à esquerda */
+}
+
+/* Nova regra para layout de 2 colunas para radio buttons */
+.radio-group-2-cols {
+    display: grid; /* Usa grid para melhor controle sobre linhas e colunas */
+    grid-template-columns: 1fr 1fr; /* Duas colunas de largura igual */
+    gap: 0.75rem; /* Espaçamento entre os itens */
+    width: 100%;
 }
 
 .radio-label {
-    display: flex;                 /* Habilita flexbox para input e texto do label */
-    align-items: center;           /* Centraliza verticalmente */
-    padding: 0.5rem;               /* Preenchimento */
-    border-radius: 0.375rem;       /* Arredondamento */
-    cursor: pointer;               /* Cursor de ponteiro */
+    display: flex;                  /* Habilita flexbox para input e texto do label */
+    align-items: center;            /* Centraliza verticalmente */
+    padding: 0.5rem;                /* Preenchimento */
+    border-radius: 0.375rem;        /* Arredondamento */
+    cursor: pointer;                /* Cursor de ponteiro */
     transition: background-color 0.2s; /* Transição de fundo */
     font-size: 1rem; /* Tamanho da fonte para "Planta 1", etc. */
 }
 
 .radio-label:hover {
-    background-color: var(--border-color); /* Fundo no hover */
+    background-color: var(--border-color);
 }
 
-.radio-label input[type="radio"] {
+.radio-label input {
     /* Esconde o input de rádio original */
     appearance: none;
     -webkit-appearance: none;
-    width: 1.25rem;                /* Tamanho personalizado */
+    width: 1.25rem;                 /* Tamanho personalizado */
     height: 1.25rem;
     border: 2px solid var(--text-color); /* Borda padrão */
-    border-radius: 50%;            /* Circular */
-    margin-right: 0.5rem;          /* Espaço à direita */
+    border-radius: 50%;             /* Circular */
+    margin-right: 0.5rem;           /* Espaço à direita */
     position: relative;
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: all 0.2s;          /* Transição para todas as propriedades */
+    transition: all 0.2s;
 }
 
-.radio-label input[type="radio"]:checked {
-    background-color: var(--light-blue-green); /* Fundo quando checado */
-    border-color: var(--light-blue-green); /* Borda quando checado */
+.radio-label input:checked {
+    background-color: var(--light-blue-green);
+    border-color: var(--light-blue-green);
 }
 
 /* Cria o ponto interno quando o rádio está checado */
-.radio-label input[type="radio"]:checked::after {
+.radio-label input:checked::after {
     content: '';
-    width: 0.6rem;                 /* Tamanho do ponto */
+    width: 0.6rem;
     height: 0.6rem;
-    background-color: var(--white); /* Cor do ponto */
-    border-radius: 50%;            /* Circular */
-    display: block;                /* Garante visibilidade */
+    background-color: var(--white);
+    border-radius: 50%;
+    display: block;
 }
 
 /* Estilo para radio buttons desabilitados */
-.radio-group input[type="radio"]:disabled {
-    cursor: not-allowed; /* Altera o cursor para indicar que não é clicável */
-    opacity: 0.6; /* Reduz a opacidade para indicar desabilitado */
-    border-color: var(--border-color); /* Cor de borda diferente quando desabilitado */
+.radio-group input:disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
+    border-color: var(--border-color);
 }
 
-.radio-group input[type="radio"]:disabled + * { /* Estilo para o label de um radio button desabilitado */
+.radio-group input:disabled + * {
     cursor: not-allowed;
-    color: var(--border-color); /* Cor do texto mais fraca */
+    color: var(--border-color);
 }
 
 
@@ -404,94 +419,221 @@ html, body {
 /* Estilos do Indicador de Status (Capacitor) */
 /* ----------------------------------------------------------------------------- */
 .status-indicator {
-    width: 20px;                   /* Largura fixa */
-    height: 20px;                  /* Altura fixa */
-    border-radius: 50%;            /* Circular */
-    box-shadow: 0 0 8px rgba(0, 0, 0, 0.3); /* Sombra */
-    transition: background-color 0.3s; /* Transição de cor */
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.3);
+    transition: background-color 0.3s;
 }
 
 .status-indicator.status-green {
-    background-color: var(--green-status); /* Cor verde */
+    background-color: var(--green-status);
 }
 
 .status-indicator.status-red {
-    background-color: var(--red-status);   /* Cor vermelha */
+    background-color: var(--red-status);
 }
 
 /* ----------------------------------------------------------------------------- */
-/* Estilos do Botão Descarregar Capacitor */
+/* Estilos do Botão Descarregar Capacitor (volta ao normal) */
 /* ----------------------------------------------------------------------------- */
 .btn-capacitor {
     background-color: var(--light-blue-green); /* Fundo */
-    color: var(--white);           /* Texto */
-    padding: 15px 18px;            /* Preenchimento (igual ao btn-login) */
-    border-radius: 8px;            /* Arredondamento (igual ao btn-login) */
-    font-weight: 600;              /* Peso da fonte */
-    border: none;                  /* Sem borda */
-    cursor: pointer;               /* Cursor de ponteiro */
+    color: var(--white);            /* Texto */
+    padding: 15px 18px;             /* Preenchimento (igual ao btn-login) */
+    border-radius: 8px;             /* Arredondamento (igual ao btn-login) */
+    font-weight: 600;               /* Peso da fonte */
+    border: none;                   /* Sem borda */
+    cursor: pointer;                /* Cursor de ponteiro */
     transition: background-color 0.3s ease, transform 0.2s ease; /* Transições */
-    flex-grow: 1;                  /* Permite que o botão cresça */
+    flex-grow: 1; /* Permite que o botão cresça */
+    margin-right: 0.5rem; /* Espaçamento entre o botão e o indicador/apply */
 }
 
 .btn-capacitor:hover {
-    background-color: #008060;     /* Fundo no hover */
-    transform: translateY(-2px);   /* Efeito de elevação */
+    background-color: #008060;
+    transform: translateY(-2px);
 }
 
 /* ----------------------------------------------------------------------------- */
 /* Estilos do Painel de Configurações do Gráfico */
 /* ----------------------------------------------------------------------------- */
 .chart-settings-panel {
-    background-color: var(--card-background); /* Fundo */
-    padding: 1.5rem;               /* Preenchimento */
-    border-radius: 10px;           /* Arredondamento */
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3); /* Sombra */
+    background-color: var(--card-background);
+    padding: 1.5rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
 }
 
 .panel-title {
-    color: var(--light-blue-green); /* Cor do título */
-    font-size: 1.25rem;            /* Tamanho da fonte */
-    font-weight: 600;              /* Peso da fonte */
-    text-align: center;            /* Centraliza */
-    margin-top: 0;                 /* Remove margem superior */
-    margin-bottom: 1.25rem;        /* Margem inferior */
+    color: var(--light-blue-green);
+    font-size: 1.25rem;
+    font-weight: 600;
+    text-align: center;
+    margin-top: 0;
+    margin-bottom: 1.25rem;
 }
+
+/* ----------------------------------------------------------------------------------- */
+/* REVERTENDO ALTERAÇÕES PARA OS BOTÕES DE APLICAR PARÂMETROS / DESCARREGAR CAPACITOR  */
+/* E REMOVENDO ESPAÇO INFERIOR */
+/* ----------------------------------------------------------------------------------- */
+.apply-reset-buttons-group {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start; /* Alinha os itens à esquerda */
+    gap: 0.5rem; /* Espaçamento entre os elementos */
+    width: 100%;
+    margin-top: 1rem; /* Margem superior para separar do bloco PID */
+    margin-bottom: 0; /* NOVO: Remove a margem inferior do grupo de botões */
+    border: none; /* REMOVIDO: Remove a borda externa que havia sido adicionada */
+    border-radius: 0; /* REMOVIDO: Remove o border-radius que havia sido adicionado */
+    overflow: visible; /* REMOVIDO: Garante que o overflow seja visível */
+}
+
+/* Estilo unificado para ambos os botões dentro do grupo (voltando ao estilo original) */
+.apply-reset-buttons-group .btn-apply-params {
+    background-color: var(--light-blue-green);
+    color: var(--white);
+    padding: 15px 18px;
+    border-radius: 8px; /* Mantém o arredondamento original */
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    flex-grow: 1; /* Permite que o botão cresça */
+    margin-right: 0.5rem; /* Espaçamento entre os botões */
+    margin-top: 0; /* Garante que não haja margem superior extra */
+}
+
+.apply-reset-buttons-group .btn-apply-params:hover {
+    background-color: #008060;
+    transform: translateY(-2px);
+}
+
+/* O btn-capacitor já tinha um estilo semelhante, apenas garantimos que não haja conflitos */
+
+
+/* ----------------------------------------------------------------------------- */
+/* Estilos de Inputs de Parâmetros (Set Point, PID) */
+/* ----------------------------------------------------------------------------- */
+.pid-constants-group { /* Contêiner do grupo de Parâmetros de Controle (label + grid) */
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centraliza o label e o grid */
+    gap: 0.5rem; /* Espaço entre o label "Parâmetros de Controle" e o .pid-inputs-grid */
+    width: 100%;
+}
+
+.pid-inputs-grid { /* O contêiner dos inputs que formam o "bloco único" */
+    display: flex;
+    flex-direction: column; /* Padrão em coluna para mobile */
+    width: 100%;
+    max-width: 250px; /* Limite de largura para o bloco em colunas */
+    border-radius: 0; /* Remove bordas arredondadas do container pai */
+    overflow: hidden; /* Garante que as bordas internas dos inputs fiquem corretas */
+}
+
+.pid-input-item { /* Contêiner para cada label E input */
+    display: flex;
+    flex-direction: column; /* Label acima do input */
+    align-items: center; /* Centraliza o label e o input */
+    gap: 0.25rem; /* Espaço reduzido entre label e input */
+    padding: 0.5rem 0; /* Padding interno para cada item */
+    width: 100%;
+}
+
+.pid-label {
+    color: var(--text-color);
+    font-weight: 500;
+    font-size: 1.125rem;
+    text-align: center;
+    width: 100%;
+    margin-bottom: 0.25rem; /* Espaço abaixo do label */
+}
+
+.pid-input { /* O input real que terá as bordas do bloco */
+    flex-grow: 1;
+    width: 80%; /* Ajustado para ser maior */
+    max-width: 150px; /* Limite para não ficar gigante */
+    border: 1px solid var(--border-color); /* Adiciona borda individual aos inputs */
+    background-color: var(--dark-blue);
+    color: var(--text-color);
+    padding: 0.75rem;
+    text-align: center;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    box-sizing: border-box; /* Inclui padding no width */
+    border-radius: 0; /* Por padrão, sem bordas arredondadas */
+    margin: 0; /* Garante que não haja margem entre os inputs por padrão */
+}
+
+/* Regras de Borda e Arredondamento para os INPUTS no layout de COLUNA (mobile/padrão) */
+
+/* Aplica bordas arredondadas no topo apenas no input do primeiro item */
+.pid-inputs-grid .pid-input-item:first-child .pid-input {
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+
+/* Aplica bordas arredondadas na base apenas no input do último item */
+.pid-inputs-grid .pid-input-item:last-child .pid-input {
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+/* Remove a borda inferior dos inputs que NÃO são o último, criando a linha reta entre eles */
+.pid-inputs-grid .pid-input:not(:last-child) {
+    border-bottom: none; /* Remove a borda inferior para controle preciso */
+}
+
+/* A borda inferior do input do Set Point, se não for o último, será a divisória mais larga */
+.pid-inputs-grid .setpoint-item .pid-input { /* Aplica ao input do SP */
+    border-bottom: 2px solid var(--border-color); /* Divisão mais larga abaixo do SP */
+}
+
+/* Ajusta o foco para todos os inputs do bloco */
+.pid-input:focus {
+    border-color: var(--light-blue-green);
+    box-shadow: 0 0 0 2px rgba(0, 204, 153, 0.3);
+    z-index: 1; /* Garante que o foco apareça por cima das bordas adjacentes */
+    position: relative; /* Necessário para z-index */
+}
+
 
 /* ----------------------------------------------------------------------------- */
 /* Estilos do Input de Range (Ajuste de Escala) */
 /* ----------------------------------------------------------------------------- */
 .scale-range-input {
-    -webkit-appearance: none;      /* Remove a aparência padrão */
+    -webkit-appearance: none;
     appearance: none;
-    width: 100%;                   /* Largura total */
-    height: 8px;                   /* Altura da trilha */
-    background: var(--border-color); /* Cor da trilha */
-    border-radius: 5px;            /* Arredondamento da trilha */
-    outline: none;                 /* Remove contorno */
-    opacity: 0.8;                  /* Transparência */
-    transition: opacity .2s;       /* Transição */
-    margin-top: 5px;               /* Margem superior */
+    width: 100%;
+    height: 8px;
+    background: var(--border-color);
+    border-radius: 5px;
+    outline: none;
+    opacity: 0.8;
+    transition: opacity .2s;
+    margin-top: 5px;
 }
 
-/* Estilo do "polegar" do slider para WebKit (Chrome, Safari) */
 .scale-range-input::-webkit-slider-thumb {
-    -webkit-appearance: none;      /* Remove aparência padrão */
+    -webkit-appearance: none;
     appearance: none;
-    width: 20px;                   /* Tamanho do polegar */
+    width: 20px;
     height: 20px;
-    border-radius: 50%;            /* Circular */
-    background: var(--light-blue-green); /* Cor do polegar */
-    cursor: grab;                  /* Cursor de arrastar */
-    box-shadow: 0 0 5px rgba(0, 204, 153, 0.7); /* Sombra */
-    transition: background-color 0.2s; /* Transição */
+    border-radius: 50%;
+    background: var(--light-blue-green);
+    cursor: grab;
+    box-shadow: 0 0 5px rgba(0, 204, 153, 0.7);
+    transition: background-color 0.2s;
 }
 
 .scale-range-input::-webkit-slider-thumb:active {
-    cursor: grabbing;              /* Cursor ao arrastar */
+    cursor: grabbing;
 }
 
-/* Estilo do "polegar" do slider para Firefox */
 .scale-range-input::-moz-range-thumb {
     width: 20px;
     height: 20px;
@@ -503,127 +645,128 @@ html, body {
 }
 
 .scale-value-display {
-    text-align: center;            /* Centraliza o texto */
-    margin-top: 0.5rem;            /* Margem superior */
-    color: var(--text-color);      /* Cor do texto */
+    text-align: center;
+    margin-top: 0.5rem;
+    color: var(--text-color);
 }
 
 /* ----------------------------------------------------------------------------- */
 /* Estilos dos Seletores de Cor */
 /* ----------------------------------------------------------------------------- */
 .setting-group-colors {
-    display: flex;                 /* Habilita flexbox para alinhar seletores de cor e botão de reset */
-    flex-wrap: wrap;               /* Permite quebra de linha em telas menores */
-    align-items: center;           /* Centraliza verticalmente */
-    justify-content: space-around; /* Distribui espaço */
-    gap: 1rem;                     /* Espaçamento entre os itens */
-    margin-bottom: 1rem;           /* Margem inferior */
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-around;
+    gap: 1rem;
+    margin-bottom: 1rem;
 }
 
 .color-label {
-    display: flex;                 /* Habilita flexbox para label e input */
-    align-items: center;           /* Centraliza verticalmente */
-    gap: 0.5rem;                   /* Espaçamento */
-    font-size: 1.125rem;           /* Tamanho da fonte */
-    font-weight: 500;              /* Peso da fonte */
-    color: var(--text-color);      /* Cor do texto */
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 1.125rem;
+    font-weight: 500;
+    color: var(--text-color);
 }
 
 .color-input {
-    -webkit-appearance: none;      /* Remove aparência padrão */
-    border: none;                  /* Sem borda */
-    width: 48px;                   /* Largura fixa */
-    height: 48px;                  /* Altura fixa */
-    background: none;              /* Sem fundo */
-    cursor: pointer;               /* Cursor de ponteiro */
-    border-radius: 0.375rem;       /* Arredondamento */
-    overflow: hidden;              /* Esconde overflow */
-    vertical-align: middle;        /* Alinha verticalmente */
+    -webkit-appearance: none;
+    border: none;
+    width: 48px;
+    height: 48px;
+    background: none;
+    cursor: pointer;
+    border-radius: 0.375rem;
+    overflow: hidden;
+    vertical-align: middle;
 }
 
-/* Estilo da amostra de cor para WebKit */
 .color-input::-webkit-color-swatch-wrapper {
-    padding: 0;                    /* Remove padding */
+    padding: 0;
 }
 
 .color-input::-webkit-color-swatch {
-    border: 2px solid var(--border-color); /* Borda */
-    border-radius: 0.375rem;       /* Arredondamento */
+    border: 2px solid var(--border-color);
+    border-radius: 0.375rem;
 }
 
 /* ----------------------------------------------------------------------------- */
 /* Estilos do Botão Redefinir Cores */
 /* ----------------------------------------------------------------------------- */
 .btn-reset {
-    background-color: var(--light-blue-green); /* Fundo */
-    color: var(--white);           /* Texto */
-    padding: 15px 18px;            /* Preenchimento (igual aos botões de login/capacitor) */
-    border-radius: 8px;            /* Arredondamento (igual aos botões de login/capacitor) */
-    font-weight: 600;              /* Peso da fonte */
-    border: none;                  /* Sem borda */
-    cursor: pointer;               /* Cursor de ponteiro */
-    transition: background-color 0.3s ease, transform 0.2s ease; /* Transições */
-    width: 100%;                   /* Botão ocupa a largura total da linha */
-    /* flex-shrink: 0; foi removido */
+    background-color: var(--light-blue-green);
+    color: var(--white);
+    padding: 15px 18px;
+    border-radius: 8px;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    width: 100%;
 }
 
 .btn-reset:hover {
-    background-color: #008060;     /* Fundo no hover */
-    transform: translateY(-2px);   /* Efeito de elevação */
+    background-color: #008060;
+    transform: translateY(-2px);
 }
 
 /* ----------------------------------------------------------------------------- */
-/* Estilos da Seção de Exibição de Valores (Cards Set Point, MV, Saída) */
+/* Estilos da Seção de Exibição de Valores (Cards Set Point, MV, Saída, Tempo) */
 /* ----------------------------------------------------------------------------- */
 .values-display-section {
-    display: flex;                 /* Habilita flexbox para os cards */
-    justify-content: space-around; /* Distribui espaço */
-    gap: 1.5rem;                   /* Espaçamento entre cards */
-    flex-wrap: wrap;               /* Permite quebra de linha */
-    margin-top: 1.5rem;            /* Margem superior para separar do gráfico */
+    display: flex;
+    justify-content: space-around;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    margin-top: 1.5rem;
 }
 
 .value-card {
-    background-color: var(--card-background); /* Fundo do card */
-    padding: 1.5rem 2rem;          /* Preenchimento */
-    border-radius: 10px;           /* Arredondamento */
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3); /* Sombra */
-    text-align: center;            /* Centraliza texto */
-    min-width: 180px;              /* Largura mínima */
-    flex: 1;                       /* Permite crescimento e encolhimento */
-    transition: transform 0.3s ease, border 0.3s ease; /* Transições */
-    border: 2px solid transparent; /* Borda transparente */
+    background-color: var(--card-background);
+    padding: 1.5rem 2rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    min-width: 180px;
+    flex: 1;
+    transition: transform 0.3s ease, border 0.3s ease;
+    border: 2px solid transparent;
 }
 
 .value-card:hover {
-    transform: translateY(-5px);   /* Efeito de elevação no hover */
-    border: 2px solid var(--light-blue-green); /* Borda verde no hover */
+    transform: translateY(-5px);
+    border: 2px solid var(--light-blue-green);
 }
 
 .value-label {
-    display: block;                /* Garante que ocupe a largura total */
-    font-size: 1.1rem;             /* Tamanho da fonte */
-    color: var(--text-color);      /* Cor do texto */
-    margin-bottom: 0.5rem;         /* Margem inferior */
+    display: block;
+    font-size: 1.1rem;
+    color: var(--text-color);
+    margin-bottom: 0.5rem;
 }
 
 .display-value {
-    font-size: 2.5rem;             /* Tamanho grande da fonte */
-    font-weight: bold;             /* Negrito */
-    color: var(--light-blue-green); /* Cor do valor */
-    text-shadow: 0 0 8px rgba(0, 204, 153, 0.7); /* Efeito de brilho */
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: var(--light-blue-green);
+    text-shadow: 0 0 8px rgba(0, 204, 153, 0.7);
 }
 
 /* Cores específicas dos cards (opcional, para distinção visual) */
 .setpoint-card .display-value { color: #00cc99;}
 .mv-card .display-value { color: #00cc99;}
 .output-card .display-value { color: #00cc99;}
+/* NOVO: Estilo para o card de tempo */
+.time-card .display-value { color: var(--light-blue-green); }
+
 
 /* ----------------------------------------------------------------------------- */
 /* Ajustes de Design Responsivo (Media Queries) */
 /* ----------------------------------------------------------------------------- */
 /* Telas maiores que 1024px (desktop) */
-@media (min-width: 1024px) {
+@media (min-width: 512px) {
     .content-section {
         flex-direction: row; /* Gráfico e sidebar lado a lado */
     }
@@ -633,69 +776,240 @@ html, body {
     .side-controls {
         width: 24rem; /* Largura fixa para a sidebar */
     }
+
+    /* Regras para o layout horizontal dos Parâmetros de Controle (SP, P, I, D) */
+    .pid-constants-group { /* Contêiner do grupo de Parâmetros de Controle (label + grid) */
+        flex-direction: column; /* Mantém o label "Parâmetros de Controle" acima do bloco de inputs */
+        align-items: center; /* Centraliza o label e o grid */
+        gap: 0.5rem; /* Espaço entre o label e o grid */
+    }
+
+    .pid-inputs-grid { /* O contêiner dos inputs que formam o "bloco único" */
+        display: flex;
+        flex-direction: row; /* Inputs em linha */
+        flex-wrap: nowrap; /* Garante que todos os 4 inputs fiquem na mesma linha */
+        justify-content: center; /* Centraliza os inputs horizontalmente */
+        max-width: none; /* Remove limite de largura */
+        border: 1px solid var(--border-color); /* Adiciona borda ao redor de TODO o bloco */
+        border-radius: 5px; /* Bordas arredondadas para o bloco */
+        overflow: hidden; /* Esconde qualquer sobreposição de bordas internas para um visual limpo */
+        align-self: center; /* Centraliza o grid dentro do pid-constants-group */
+    }
+    
+    .pid-input-item { /* Contêiner para cada label E input */
+        flex: 1;
+        padding: 0; 
+        margin: 0;
+        display: flex; /* Manter flexbox */
+        flex-direction: column; /* Manter label acima do input */
+        align-items: center; /* Manter centralizado */
+        gap: 0.25rem; /* Espaço entre label e input */
+    }
+
+    .pid-input { /* O input real que terá as bordas do bloco */
+        border: 1px solid var(--border-color); /* Adiciona borda individual aos inputs */
+        width: 100%; /* Ocupa 100% do seu pid-input-item pai (para a borda do item) */
+        max-width: 150px; /* Limite de largura */
+        box-sizing: border-box; /* Inclui padding no width */
+        background-color: var(--dark-blue); /* Garante cor de fundo */
+        padding: 0.75rem; /* Padding interno do input */
+        border-radius: 0; /* Por padrão, sem bordas arredondadas */
+        margin: 0 0 0 -1px; /* Margem negativa à esquerda para sobrepor a borda anterior */
+        position: relative; /* Para controle de z-index */
+        z-index: 0;
+    }
+    .pid-input:focus {
+        z-index: 1; /* Aumenta o z-index no foco para a borda aparecer corretamente */
+    }
+
+
+    /* Regras de Borda e Arredondamento para os INPUTS no layout de LINHA */
+
+    /* Aplica bordas arredondadas na esquerda do primeiro input (SP) */
+    .pid-inputs-grid .pid-input-item:first-child .pid-input {
+        border-top-left-radius: 5px;
+        border-bottom-left-radius: 5px;
+        margin-left: 0; /* O primeiro input não tem margem negativa à esquerda */
+    }
+
+    /* Aplica bordas arredondadas na direita do último input (D) */
+    .pid-inputs-grid .pid-input-item:last-child .pid-input {
+        border-top-right-radius: 5px;
+        border-bottom-right-radius: 5px;
+    }
+
+    /* Remove a borda inferior dos inputs (já que é layout horizontal) */
+    .pid-inputs-grid .pid-input:not(:last-child) {
+        border-bottom: 1px solid var(--border-color); /* Borda inferior para os inputs no meio, se quiser */
+    }
+    
+    /* Espaçamento maior (borda mais grossa) entre Set Point e P no layout de LINHA */
+    .pid-inputs-grid .setpoint-item .pid-input {
+        border-right-width: 2px; /* Divisão mais larga para Set Point */
+    }
+
+    /* Garante que os inputs do meio não tenham bordas arredondadas */
+    .pid-inputs-grid .pid-input-item:not(:first-child):not(:last-child) .pid-input {
+        border-radius: 0;
+    }
+
+    .values-display-section {
+        justify-content: space-between;
+        gap: 1rem;
+        flex-wrap: nowrap;
+    }
+    .value-card {
+        flex: 1 1 auto;
+        min-width: 150px;
+        max-width: none;
+    }
 }
 
 /* Telas com largura máxima de 1024px (tablets e alguns desktops menores) */
 @media (max-width: 1024px) {
     .content-section {
-        flex-direction: column;    /* Empilha gráfico e sidebar verticalmente */
-        align-items: center;       /* Centraliza itens */
+        flex-direction: column;
+        align-items: center;
     }
     .chart-container, .side-controls {
-        width: 95%;                /* Quase largura total */
-        max-width: 800px;          /* Limite para telas grandes */
+        width: 95%;
+        max-width: 800px;
     }
     .values-display-section {
-        flex-direction: column;    /* Empilha os cards de valor verticalmente */
-        align-items: center;       /* Centraliza os cards */
+        flex-direction: row;
+        justify-content: center;
+        gap: 1rem;
+        flex-wrap: wrap;
     }
     .value-card {
-        width: 95%;                /* Ocupa quase a largura total */
-        max-width: 400px;          /* Limite para telas grandes */
+        width: calc(50% - 1rem);
+        max-width: calc(50% - 1rem);
+        min-width: 180px;
+    }
+    /* PID e Setpoint em coluna em tablets/mobile */
+    .pid-constants-group { /* Continua como coluna para mobile */
+        flex-direction: column;
+        align-items: center;
+        gap: 0.5rem;
+    }
+    .pid-inputs-grid {
+        flex-direction: column; /* De volta à coluna */
+        max-width: 250px; /* Mantém largura limitada em tablets */
+        border: 1px solid var(--border-color); /* Re-adiciona borda no grid para mobile */
+        border-radius: 5px; /* Re-adiciona borda arredondada para mobile */
+        overflow: hidden; /* Re-adiciona overflow para mobile */
+        align-self: center; /* Centraliza o grid */
+        padding: 0; /* Remover padding do grid para que as bordas dos items fiquem coladas */
+    }
+    .pid-input-item {
+        width: 100%; /* Ocupa largura total do bloco */
+        padding: 0.75rem 0.5rem; /* Padding para layout vertical */
+        margin: 0; /* Remover margens do item */
+    }
+    .pid-input { /* Inputs dentro do grid, com bordas controladas pelo grid e margin-bottom */
+        border: none; /* Remove bordas individuais do input */
+        width: 80%; /* Ajuste de largura */
+        max-width: 150px;
+        margin: 0; /* Garante que não haja margem */
+    }
+
+    /* Bordas para o layout em coluna (o bloco inteiro) */
+    .pid-inputs-grid .pid-input-item:not(:last-child) { /* Borda divisória inferior dos itens */
+        border-bottom: 1px solid var(--border-color);
+    }
+    /* Espaçamento maior entre Set Point e P no layout vertical */
+    .pid-inputs-grid .setpoint-item {
+        margin-bottom: 0.5rem; /* Adiciona espaçamento abaixo do item do Set Point */
+        padding-bottom: 1rem; /* Aumenta o padding inferior do item Set Point para a divisão */
+    }
+    .pid-inputs-grid .setpoint-item:not(:last-child) {
+        border-bottom-width: 2px; /* Divisão mais larga abaixo do Set Point */
+    }
+    /* Remove a borda inferior do último item do bloco em coluna */
+    .pid-inputs-grid .pid-input-item:last-child {
+        border-bottom: none;
+    }
+
+    /* As bordas arredondadas são aplicadas ao container .pid-inputs-grid
+       e o overflow: hidden faz o resto para os inputs */
+    .pid-inputs-grid .pid-input-item:first-child .pid-input {
+        border-top-left-radius: 0;
+        border-top-right-radius: 0;
+    }
+    .pid-inputs-grid .pid-input-item:last-child .pid-input {
+        border-bottom-left-radius: 0;
+        border-bottom-right-radius: 0;
     }
 }
 
-/* Telas com largura máxima de 768px (tablets e smartphones em paisagem) */
+/* Telas com largura máxima de 768px (smartphones em paisagem) */
 @media (max-width: 768px) {
     .main-header {
-        flex-direction: column;    /* Empilha elementos do cabeçalho verticalmente */
-        gap: 1rem;                 /* Espaçamento entre elementos do cabeçalho */
-        padding: 1rem;             /* Preenchimento reduzido */
+        flex-direction: column;
+        gap: 1rem;
+        padding: 1rem;
     }
     .main-title {
-        font-size: 1.5rem;         /* Reduz o tamanho da fonte do título do cabeçalho */
+        font-size: 1.5rem;
     }
     .btn-login {
-        width: 100%;               /* Botão de login em largura total */
+        width: 100%;
     }
     .main-layout {
-        padding: 1rem;             /* Preenchimento reduzido para o conteúdo principal */
+        padding: 1rem;
+    }
+    .pid-inputs-grid {
+        max-width: 180px; /* Ajuste para smartphones */
+    }
+    .values-display-section {
+        flex-direction: column;
+        flex-wrap: wrap;
+    }
+    .value-card {
+        width: 95%;
+        max-width: 400px;
+    }
+    .radio-group-2-cols {
+        grid-template-columns: 1fr;
     }
 }
 
 /* Telas com largura máxima de 480px (smartphones em retrato) */
 @media (max-width: 480px) {
     .main-title {
-        font-size: 1.3rem;         /* Reduz ainda mais o tamanho da fonte do título do cabeçalho */
+        font-size: 1.3rem;
     }
     .display-value {
-        font-size: 2rem;           /* Reduz o tamanho da fonte dos valores nos cards */
+        font-size: 2rem;
     }
     .chart-title {
-        font-size: 1.3rem;         /* Reduz o tamanho da fonte do título do gráfico */
+        font-size: 1.3rem;
     }
     .panel-title {
-        font-size: 1.1rem;         /* Reduz o tamanho da fonte dos títulos do painel lateral */
+        font-size: 1.1rem;
     }
     .tab-button {
-        font-size: 1rem;           /* Reduz o tamanho da fonte dos botões das abas */
+        font-size: 1rem;
     }
-    .setting-label, .setting-label-mb, .color-label {
-        font-size: 0.9rem;         /* Reduz o tamanho da fonte dos labels de configuração */
+    .apply-reset-buttons-group button { /* Ajuste para botões menores em telas muito pequenas */
+        padding: 10px 12px; /* Reduz o padding */
+        font-size: 0.9rem; /* Reduz o tamanho da fonte */
     }
-    .btn-capacitor, .btn-reset {
-        padding: 10px 20px;        /* Reduz o padding dos botões */
-        font-size: 0.9rem;         /* Reduz o tamanho da fonte dos botões */
+    .toggle-control-wrapper {
+        flex-direction: column;
+        max-width: 180px;
+        gap: 0.25rem;
+    }
+    .toggle-switch {
+        width: 60px;
+        min-width: 60px;
+        height: 1.8rem;
+    }
+    .toggle-slider {
+        height: calc(100% - 0.4rem);
+        transform: translateX(calc(100% + 0.2rem));
+    }
+    .toggle-input:checked ~ .toggle-slider {
+        transform: translateX(calc(100% + 0.2rem));
     }
 }
-

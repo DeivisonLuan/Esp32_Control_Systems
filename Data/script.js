@@ -5,7 +5,7 @@
  * seleções de botões de rádio, simulação de descarga de capacitor,
  * renderização e atualização de dados do gráfico, e configurações de personalização do gráfico.
  *
- * Autor: Gemini AI
+ * Autor: Deivison Luan
  * Data: 23 de Junho de 2025
  */
 
@@ -44,6 +44,12 @@ document.addEventListener('DOMContentLoaded', () => {
             const statusIndicator = document.getElementById(indicatorId);
             const isDisabled = statusIndicator.classList.contains('status-red');
             setRadioButtonsState(activeContent, isDisabled);
+
+            // Atualiza o estado visual dos rótulos do toggle (Malha Aberta/Fechada)
+            const toggleInput = activeContent.querySelector('.toggle-input');
+            const labelMalhaAberta = activeContent.querySelector('.toggle-mode-label#labelMalhaAberta' + (activeContent.id.includes('ordem1') ? '1' : '2'));
+            const labelMalhaFechada = activeContent.querySelector('.toggle-mode-label#labelMalhaFechada' + (activeContent.id.includes('ordem1') ? '1' : '2'));
+            updateToggleLabels(toggleInput, labelMalhaAberta, labelMalhaFechada);
         }
     }
 
@@ -51,7 +57,7 @@ document.addEventListener('DOMContentLoaded', () => {
     tabButtons.forEach(button => {
         button.addEventListener('click', () => {
             const tabId = button.dataset.tab; // Obtém o ID da aba alvo do atributo 'data-tab'.
-            activateTab(tabId);               // Chama a função para ativar a aba selecionada.
+            activateTab(tabId);              // Chama a função para ativar a aba selecionada.
         });
     });
 
@@ -64,17 +70,41 @@ document.addEventListener('DOMContentLoaded', () => {
     // Seleciona todos os inputs de toggle switch na interface pela classe 'toggle-input'.
     const toggleSwitches = document.querySelectorAll('.toggle-input');
 
+    /**
+     * Atualiza as classes CSS dos rótulos do toggle para destacar a opção selecionada.
+     * @param {HTMLInputElement} toggleInput - O input checkbox do toggle.
+     * @param {HTMLElement} labelMalhaAberta - O elemento span do rótulo "Malha Aberta".
+     * @param {HTMLElement} labelMalhaFechada - O elemento span do rótulo "Malha Fechada".
+     */
+    function updateToggleLabels(toggleInput, labelMalhaAberta, labelMalhaFechada) {
+        if (toggleInput.checked) { // Se o toggle está selecionado (Malha Fechada)
+            labelMalhaFechada.classList.add('active');
+            labelMalhaAberta.classList.remove('active');
+        } else { // Se o toggle não está selecionado (Malha Aberta)
+            labelMalhaAberta.classList.add('active');
+            labelMalhaFechada.classList.remove('active');
+        }
+    }
+
     // Adiciona um "ouvinte de evento" de 'change' (quando o estado do input muda) a cada toggle switch.
     toggleSwitches.forEach(toggle => {
+        // Encontra os rótulos associados a este toggle
+        const tabContent = toggle.closest('.tab-content');
+        const labelMalhaAberta = tabContent.querySelector('.toggle-mode-label#labelMalhaAberta' + (tabContent.id.includes('ordem1') ? '1' : '2'));
+        const labelMalhaFechada = tabContent.querySelector('.toggle-mode-label#labelMalhaFechada' + (tabContent.id.includes('ordem1') ? '1' : '2'));
+        
+        // Inicializa o estado visual dos rótulos ao carregar
+        updateToggleLabels(toggle, labelMalhaAberta, labelMalhaFechada);
+
         toggle.addEventListener('change', () => {
-            // Determina o modo de operação atual com base no estado 'checked' do toggle.
             const status = toggle.checked ? 'Malha Fechada' : 'Malha Aberta';
-            // Determina a qual tipo de ordem (1ª ou 2ª) o toggle pertence, verificando seu ID.
             const orderType = toggle.id.includes('Ordem1') ? '1ª Ordem' : '2ª Ordem';
             console.log(`Modo de Operação para ${orderType}: ${status}`);
-            // TODO: Aqui você pode adicionar a lógica real para mudar o comportamento do sistema.
-            // Por exemplo, atualizar parâmetros de simulação ou buscar diferentes conjuntos de dados
-            // com base no modo de operação selecionado (malha aberta ou malha fechada).
+            
+            // Atualiza o estado visual dos rótulos após a mudança
+            updateToggleLabels(toggle, labelMalhaAberta, labelMalhaFechada);
+
+            // TODO: Adicionar lógica real para mudar o comportamento do sistema.
         });
     });
 
@@ -91,6 +121,17 @@ document.addEventListener('DOMContentLoaded', () => {
         const radios = container.querySelectorAll('input[type="radio"]');
         radios.forEach(radio => {
             radio.disabled = isDisabled;
+            // Se um rádio é desabilitado, desabilitamos também seu label para feedback visual
+            const label = radio.closest('.radio-label');
+            if (label) {
+                if (isDisabled) {
+                    label.classList.add('disabled-label');
+                    label.style.cursor = 'not-allowed'; // Mudar cursor do label
+                } else {
+                    label.classList.remove('disabled-label');
+                    label.style.cursor = 'pointer'; // Restaurar cursor do label
+                }
+            }
         });
     }
 
@@ -109,7 +150,9 @@ document.addEventListener('DOMContentLoaded', () => {
             } else if (event.target.type === 'radio' && event.target.disabled) {
                 // Se o rádio estava desabilitado e houve uma tentativa de mudança, pode-se avisar o usuário.
                 console.log("Não é possível mudar a planta enquanto o capacitor está descarregando.");
-                // Opcional: reverter a seleção para a planta anterior ou mostrar uma mensagem visual.
+                // Opcional: para evitar que a seleção visual mude se o click for ignorado,
+                // pode-se reverter o `checked` para o rádio que estava ativo antes.
+                // Isso exigiria armazenar o `checked` anterior ou re-selecionar após o alerta.
             }
         });
     });
@@ -129,7 +172,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (statusIndicator) {
             statusIndicator.classList.add('status-green');  // Adiciona a classe para cor verde.
             statusIndicator.classList.remove('status-red'); // Garante que a cor vermelha não esteja ativa.
-            setRadioButtonsState(tabContentContainer, false); // Habilita os radios inicialmente
+            setRadioButtonsState(tabContentContainer, false); // Habilita os radios inicialmente.
         }
 
         // Adiciona um "ouvinte de evento" de clique ao botão de descarga do capacitor.
@@ -138,7 +181,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 // Muda a cor do indicador para vermelho (simulando a descarga).
                 statusIndicator.classList.remove('status-green');
                 statusIndicator.classList.add('status-red');
-                setRadioButtonsState(tabContentContainer, true); // Desabilita os radios
+                setRadioButtonsState(tabContentContainer, true); // Desabilita os radios.
                 console.log('Capacitor descarregando...');
 
                 // Simula o tempo de descarga usando um `setTimeout`.
@@ -147,7 +190,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     // Após o tempo simulado, muda o indicador de volta para verde (carregado).
                     statusIndicator.classList.remove('status-red');
                     statusIndicator.classList.add('status-green');
-                    setRadioButtonsState(tabContentContainer, false); // Habilita os radios novamente
+                    setRadioButtonsState(tabContentContainer, false); // Habilita os radios novamente.
                     console.log('Capacitor carregado novamente (verde).');
                 }, 3000); // O indicador permanece vermelho por 3 segundos.
             }
@@ -158,6 +201,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Obtém o contexto 2D do elemento canvas com o ID 'controlSignalChart' para desenhar o gráfico.
     const ctx = document.getElementById('controlSignalChart').getContext('2d');
     let controlSignalChart; // Declara uma variável para armazenar a instância do objeto Chart.js.
+    let currentTime = 0; // Variável para rastrear o tempo atual para o novo card.
 
     // Dados simulados iniciais para o gráfico.
     const initialData = {
@@ -277,6 +321,9 @@ document.addEventListener('DOMContentLoaded', () => {
         const newDataMV = (Math.random() * 10) + 20;    // Gera um novo dado aleatório para a Variável Manipulada (MV).
         const newDataOutput = (Math.random() * 10) + 20; // Gera um novo dado aleatório para a Saída.
 
+        // Incrementa o tempo
+        currentTime++; 
+
         // Adiciona um novo ponto de dado ao final dos arrays de rótulos e conjuntos de dados.
         // O rótulo de tempo é incrementado para manter a sequência.
         initialData.labels.push(initialData.labels[initialData.labels.length - 1] + 1);
@@ -294,6 +341,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // Atualiza os valores exibidos nos cards de destaque na interface do usuário.
         document.getElementById('mvValue').textContent = newDataMV.toFixed(1);     // Atualiza o valor de MV, formatado para uma casa decimal.
         document.getElementById('outputValue').textContent = newDataOutput.toFixed(1); // Atualiza o valor de Saída, formatado para uma casa decimal.
+        document.getElementById('timeValue').textContent = `${currentTime} s`; // Atualiza o valor do tempo
         // O valor de Set Point permanece estático nesta simulação e não é atualizado por esta função.
 
         controlSignalChart.update('none'); // Atualiza o gráfico. O parâmetro 'none' impede a animação para uma atualização mais rápida, ideal para dados em tempo real.
@@ -308,9 +356,9 @@ document.addEventListener('DOMContentLoaded', () => {
     // Obtém referências aos elementos HTML dos controles de configuração do gráfico.
     const scaleAdjustment = document.getElementById('scale-adjustment'); // Slider para ajuste de escala.
     const scaleValueDisplay = document.getElementById('scale-value');     // Elemento para exibir o valor atual da escala.
-    const mvColorInput = document.getElementById('mv-color');             // Input de tipo 'color' para a cor da linha MV.
-    const outputColorInput = document.getElementById('output-color');     // Input de tipo 'color' para a cor da linha de Saída.
-    const resetButton = document.querySelector('.btn-reset');             // Botão para redefinir todas as configurações do gráfico.
+    const mvColorInput = document.getElementById('mv-color');            // Input de tipo 'color' para a cor da linha MV.
+    const outputColorInput = document.getElementById('output-color');    // Input de tipo 'color' para a cor da linha de Saída.
+    const resetButton = document.querySelector('.btn-reset');            // Botão para redefinir todas as configurações do gráfico.
 
     // Adiciona um "ouvinte de evento" para o slider de ajuste de escala. O evento 'input' dispara a cada mudança.
     scaleAdjustment.addEventListener('input', () => {
@@ -379,9 +427,45 @@ document.addEventListener('DOMContentLoaded', () => {
         controlSignalChart.update(); // Atualiza o gráfico para aplicar todas as redefinições.
     });
 
-    // Inicializa os valores exibidos nos cards de destaque (Set Point, MV, Saída) quando a página é carregada.
+    /* --- Lógica de Aplicação de Parâmetros (Set Point, PID) --- */
+    // Seleciona todos os botões de "Aplicar Parâmetros"
+    const applyParamsButtons = document.querySelectorAll('.btn-apply-params');
+
+    applyParamsButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            // Determina a aba ativa para pegar os inputs corretos
+            const activeTabId = button.closest('.tab-content').id;
+            const orderPrefix = activeTabId.includes('ordem1') ? 'Ordem1' : 'Ordem2';
+
+            const setPointInput = document.getElementById(`setPointInput${orderPrefix}`);
+            const pConstantInput = document.getElementById(`pConstant${orderPrefix}`);
+            const iConstantInput = document.getElementById(`iConstant${orderPrefix}`);
+            const dConstantInput = document.getElementById(`dConstant${orderPrefix}`);
+
+            const newSetPoint = parseFloat(setPointInput.value);
+            const pValue = parseFloat(pConstantInput.value);
+            const iValue = parseFloat(iConstantInput.value);
+            const dValue = parseFloat(dConstantInput.value);
+
+            // Atualiza o valor do Set Point no display principal
+            document.getElementById('setPointValue').textContent = newSetPoint.toFixed(1);
+
+            console.log(`Parâmetros Aplicados para ${orderPrefix}:`);
+            console.log(`Set Point: ${newSetPoint}`);
+            console.log(`P: ${pValue}`);
+            console.log(`I: ${iValue}`);
+            console.log(`D: ${dValue}`);
+
+            // TODO: Aqui você integraria esses valores na sua lógica de simulação/controle.
+            // Por exemplo, passá-los para um modelo de controle PID que afeta a geração de dados.
+        });
+    });
+
+
+    // Inicializa os valores exibidos nos cards de destaque (Set Point, MV, Saída, Tempo) quando a página é carregada.
     document.getElementById('setPointValue').textContent = '25.0'; // Define o valor inicial do Set Point (fixo por enquanto).
     // Define os valores iniciais de MV e Saída com base no último ponto de dado dos conjuntos de dados iniciais, formatado.
     document.getElementById('mvValue').textContent = initialData.datasets[0].data[initialData.datasets[0].data.length - 1].toFixed(1);
     document.getElementById('outputValue').textContent = initialData.datasets[1].data[initialData.datasets[1].data.length - 1].toFixed(1);
+    document.getElementById('timeValue').textContent = `${currentTime} s`; // Inicializa o valor do tempo.
 });
