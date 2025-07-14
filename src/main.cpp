@@ -18,8 +18,8 @@ https://github.com/josenalde/ui-control-websocket-esp32
 
 //Definições:
       //Nome e senha da rede a se conectar
-      const char* WIFI_SSID = "A10s";
-      const char* WIFI_PASSWORD = "Deivison1993";
+      const char* WIFI_SSID = "brisa-1849366";
+      const char* WIFI_PASSWORD = "vcmgnixs";
 
       // Create a WebSocket object
       WebSocketsServer websocketServer = WebSocketsServer(8080);
